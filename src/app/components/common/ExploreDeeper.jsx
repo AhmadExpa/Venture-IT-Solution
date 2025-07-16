@@ -4,7 +4,13 @@ import Image from "next/image";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import Link from "next/link";
 
-function ExploreDeeper({ title, description, exploreText, exploreImage, articles }) {
+function ExploreDeeper({
+  title,
+  description,
+  exploreText,
+  exploreImage,
+  articles,
+}) {
   return (
     <div className="lg:px-10 px-6">
       {/* Header Section */}
@@ -16,7 +22,13 @@ function ExploreDeeper({ title, description, exploreText, exploreImage, articles
         <div className="flex gap-2 items-center ">
           <p className="text-[#3F3F46] font-semibold ">{exploreText}</p>
           {exploreImage && (
-            <Image src={exploreImage} alt="Explore" className="object-contain " />
+            <Image
+              src={exploreImage}
+              alt="Explore"
+              className="object-contain "
+              width={20}
+              height={20}
+            />
           )}
         </div>
       </div>
@@ -31,23 +43,34 @@ function ExploreDeeper({ title, description, exploreText, exploreImage, articles
             }`}
           >
             {article.items.map((item, itemIndex) => (
-              <div key={itemIndex} className="relative group flex flex-col gap-4">
+              <div
+                key={itemIndex}
+                className="relative group flex flex-col gap-4"
+              >
                 <Link
-                  href={`/blog/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                  href={`/blog/${item.slug}`}
                   className="relative overflow-hidden block"
                 >
                   {/* Image takes 40vw width */}
                   <Image
                     src={item.image}
                     alt={item.title}
-                    className=" object-contain transition-transform duration-300 transform scale-100 group-hover:scale-105"
+                    width={800} // or use dynamic dimensions
+                    height={600}
+                    className="object-contain transition-transform duration-300 transform scale-100 group-hover:scale-105"
                   />
+
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <MdOutlineArrowOutward size={40} className="text-white font-bold" />
+                    <MdOutlineArrowOutward
+                      size={40}
+                      className="text-white font-bold"
+                    />
                   </div>
                 </Link>
                 {/* Content below the image */}
-                <p className="text-[#171717] font-semibold text-xl ">{item.title}</p>
+                <p className="text-[#171717] font-semibold text-xl ">
+                  {item.title}
+                </p>
                 <p className="text-[#3F3F46] text-base ">{item.description}</p>
               </div>
             ))}
