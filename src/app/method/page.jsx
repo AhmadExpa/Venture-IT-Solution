@@ -24,7 +24,7 @@ const Method = () => {
           style={{ backgroundImage: `url(${rotate.src})` }}
         ></div>
 
-        <div className="max-w-6xl w-full relative md:h-96 md:top-[-140px] top-[75px]">
+        <div className="max-w-6xl w-full relative md:h-96 md:top-[-60px] top-[20px]">
           <div className="relative text-center md:px-6">
             <h1 className="text-2xl md:text-8xl font-bold md:mb-6">
               The Venture Nexus

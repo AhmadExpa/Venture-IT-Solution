@@ -30,7 +30,7 @@ const TheFutureBright = () => {
               href="hire-us"
               className="inline-block  underline py-4 rounded-lg"
             >
-              Partner with Venture IT Solution,
+              Partner with Venture IT Solution-
             </a>
             Let's turn your digital dreams into reality.
           </p>

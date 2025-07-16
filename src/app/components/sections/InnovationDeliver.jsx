@@ -23,7 +23,7 @@ function InnovationDeliver() {
               Your Trusted Partner in Tech
             </h1>
             <p className="text-gray-600 md:text-lg md:text-start text-center md:mt-2 md:ps-3">
-            As a Recognized among Software Development companies USA, our professionals contribute towards innovation heading  to the growth across tech industry
+            As a recognized name among software development companies in the USA, our professionals contribute to innovation, driving growth across the tech industry.
 
             </p>
           </div>

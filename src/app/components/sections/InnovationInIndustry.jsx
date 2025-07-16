@@ -169,7 +169,7 @@ const cardData = [
   {
     title: "E-Commerce",
     image: img13,
-    description: "We assist you in web development services which enhance...",
+    description: "We assist you in web development services that enhance.",
     link: "/industries#ecommerce", // Add the link here
   },
 ];

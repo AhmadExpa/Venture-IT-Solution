@@ -6,30 +6,12 @@ import GradientButton from "../common/GradientButton";
 
 const WhyChoose = () => {
   const features = [
-    // "Agile Development Framework.",
-    // "Proven Tech-Driven Processes.",
-    // "Seamless Onboarding & App Development.",
-    // "Enterprise-Grade Quality Assurance.",
-    // "Cross-Functional IT Expertise.",
-    // "Successful Project Delivery.",
-    // "Vetted 80+ Global Experts.",
-    // "Enterprise-Grade & Scalable Solutions.",
-    // "Data-Driven & ROI-Focused Approach.",
-    // "Full-Stack Development & Secure Coding.",
-    // "Trusted Record of Successful projects and delivery.",
     "Proven track record of delivering enterprise-grade, scalable solutions on time and within budget.",
     "Commitment to innovation and latest technologies, backed by a trusted record of successful project delivery.",
-    "Customer-centric approach to ensure your business goals are met.",
-    "Top tech talent: 30+ globally recognized experts with a strong co-ownership mindset.",
-    "Empowered by trust, transparency, and a shared commitment to partnership.",
-    // "Driven by trust, transparency, and partnership",
-    // "Focus on long-term value and teams built to last",
-    // "A results-driven leader with a focus on delivering ROI-centric solutions.",
-    // " Data engineering services across all Public Cloud platforms like Azure, AWS & GCP",
-    // "Data warehousing and Data modelling services",
-    // " Full stack App development using .NET, Java & Python stack GenAI capabilities",
-    // " Infra services including Cloud infra design, DevOps (CI/CD) etc.",
-    // "Proven ability to deliver under pressure while exceeding expectations.",
+    // The following points are commented out as per user request:
+    // "Your Vision, Realized and Delivered – Seamlessly Beyond Expectations.",
+    // "Seasoned experts leveraging the latest technologies and tools to deliver top-notch solutions that drive your business forward.",
+    // "From rapid project execution to seamless cloud migrations, we are here to transform your vision into reality.",
   ];
 
   return (

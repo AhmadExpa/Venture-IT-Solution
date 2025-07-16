@@ -45,12 +45,12 @@ const WhyChooseUs = () => {
     // "Customer-centric approach to ensure your business goals are met.",
     // "Driven by trust, transparency, and partnership",
     // "Focus on long-term value and teams built to last",
-    "A results-driven leader with a focus on delivering ROI-centric solutions.",
-    " Data engineering services across all Public Cloud platforms like Azure, AWS & GCP",
-    "Data warehousing and Data modelling services",
-    " Full stack App development using .NET, Java & Python stack GenAI capabilities",
-    " Infra services including Cloud infra design, DevOps (CI/CD) etc.",
-    "Proven ability to deliver under pressure while exceeding expectations.",
+    "A results-driven leader with a focus on delivering ROI-centric solutions",
+    " Data engineering services across all public cloud platforms like Azure, AWS, and GCP",
+    "Data warehousing and data modelling services",
+    " Full-stack app development using .NET, Java, and Python stack with GenAI capabilities",
+    " Infra services including Cloud infra design, DevOps (CI/CD) etc.Infra services, including cloud infrastructure design, DevOps (CI/CD), etc.",
+    "Proven ability to deliver under pressure while exceeding expectations",
   ];
 
   return (

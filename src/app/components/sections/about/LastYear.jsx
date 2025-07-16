@@ -10,7 +10,7 @@ const sectionsData = [
 
   },
   {
-    heading: "Advanced Data Integration with SSIS and ETL Tools",
+    heading: "Advanced-Data Integration with SSIS and ETL Tools",
     paragraph:
       "Efficient data integration powers smarter business decisions. Streamline complex workflows with SSIS and advanced ETL tools to transform raw data into actionable insights.",
       path: "/caseStudy/Advanced-data-integration",
