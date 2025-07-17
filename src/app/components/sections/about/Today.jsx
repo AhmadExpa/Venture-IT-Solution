@@ -77,12 +77,12 @@ const Today = () => {
         "20+"
       ),
       buttonLabel: "Project Success Rate",
-      paragraph: "Collaborated with over 300+ clients worldwide and developed 80%  innovative softwares with expert developers.",
+      paragraph: "Collaborated with over 300+ clients worldwide and developed 80%  innovative software Solutions with expert developers.",
     },
     {
       value: inView ? <CountUp end={65} duration={10} suffix="%" /> : "65%",
       buttonLabel: "Referral Business",
-      paragraph: "Built long-term partnerships by winning the trust of repeated clients for outmost success.",
+      paragraph: "Built long-term partnerships by winning the trust of repeated clients for utmost success.",
     },
   ];
 

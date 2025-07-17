@@ -120,7 +120,7 @@ const TechStackDev = () => {
       <div className="max-w-7xl mx-auto px-4 py-3 md:py-20">
         <div className="max-w-3xl">
           <h2 className="md:text-[90px] text-[25px] font-bold text-gray-900 md:mb-5">
-            Scale at Speed With Tech Stack
+            The Scale at Speed With Tech Stack
           </h2>
           <p className="text-lg text-gray-600">
             Our influential team excels in vast frameworks & programming

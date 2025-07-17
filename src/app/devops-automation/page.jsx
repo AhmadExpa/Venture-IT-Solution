@@ -20,7 +20,7 @@ const page = () => {
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="DevOps, Automation and Solution"
+        heading="DevOps, Automation, and Solution"
       />
       <DeveopsContent />
       {/* <DevelopmentBuildBlock /> */}

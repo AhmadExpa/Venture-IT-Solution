@@ -16,7 +16,7 @@ const sectionsData = [
     id: "qa-testing",
     heading: "QA Testing",
     paragraph:
-      "  Assure bug-free, high-performance independent software testing services including automated and manual",
+      "  Assure bug-free, high-performance independent software testing services including automated and manual.",
 
     paragraph2:
       "Our QA experts bring their experiences and industrial knowledge to facilitate future-ready solutions to move ahead your business easily",

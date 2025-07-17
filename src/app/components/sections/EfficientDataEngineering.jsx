@@ -49,7 +49,7 @@ function EfficientDataEngineering() {
       icon: TbView360,
       title: "Integrated Data Ecosystem for 360-Degree Insights",
       description:
-        "Unify disparate data sources into a proper ecosystem, providing real-time, cohesive insights that enhance business agility, operational efficiency, and informed decision-making.",
+        "Unify disparate data sources into a structured ecosystem, providing real-time, cohesive insights that enhance business agility, operational efficiency, and informed decision-making.",
     },
   ];
 
@@ -57,7 +57,7 @@ function EfficientDataEngineering() {
     <div>
       <SpeedSecure
         heading="Restructure, Redefine, Resolution"
-        subheading="Construct robust data infrastructures for top-notch performance required for enterprise applications, managing scalability, and cutting-edge data engineering frameworks"
+        subheading="Construct robust data infrastructures for top-notch performance required for enterprise applications, managing scalability, and cutting-edge data engineering frameworks."
         sections={sectionsData}
       />
     </div>

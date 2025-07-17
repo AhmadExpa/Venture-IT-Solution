@@ -19,7 +19,7 @@ const sectionsData = [
   },
   {
     heading: "Security",
-    paragraph:"mplementing enterprise-grade cybersecurity, threat intelligence, and compliance solutions to safeguard digital assets.",
+    paragraph:"Implementing enterprise-grade cybersecurity, threat intelligence, and compliance solutions to safeguard digital assets.",
     path: "/security",
   },
   {

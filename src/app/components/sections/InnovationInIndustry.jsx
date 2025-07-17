@@ -145,7 +145,7 @@ const cardData = [
   {
     title: "Sports",
     image: img7,
-    description: "Developing innovative platforms for sports management and fan...",
+    description: "Developing innovative platforms for sports management and fans...",
     link: "/industries#sport", // Add the link here
   },
   {
@@ -169,7 +169,7 @@ const cardData = [
   {
     title: "E-Commerce",
     image: img13,
-    description: "We assist you in web development services which enhance...",
+    description: "We assist you in web development services that enhance.",
     link: "/industries#ecommerce", // Add the link here
   },
 ];

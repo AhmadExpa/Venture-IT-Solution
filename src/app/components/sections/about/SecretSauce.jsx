@@ -115,7 +115,7 @@ const SecretSauce = () => {
             </div>
             <p className="text-gray-600">
               We pledge unwavering dedication, owning our commitments to clients
-              and self with passion.
+              and ourselves.
             </p>
           </div>
 
@@ -123,8 +123,7 @@ const SecretSauce = () => {
           <div className="bg-white p-6 shadow-sm w-full min-h-[190px] border border-[#CED2DA] rounded-[27px] md:mt-14">
             <h2 className="text-xl font-bold mb-4">Mastery in Tech</h2>
             <p className="text-gray-600">
-              Our focus on Python, JS, TypeScript, and PHP has enabled us to
-              refine our craft & deliver excellence.
+            Our focus on Python, JavaScript, TypeScript, and PHP has enabled us to refine our craft and deliver excellence.
             </p>
           </div>
 
@@ -171,8 +170,7 @@ const SecretSauce = () => {
               <h2 className="text-xl font-bold">Product Thinking</h2>
             </div>
             <p className="text-gray-600">
-              We don't just code, we think critically about your business goals,
-              ensuring the product fits your audience perfectly.
+            We don't just code — we think critically about your business goals, ensuring the product fits your audience perfectly.
             </p>
           </div>
         </div>

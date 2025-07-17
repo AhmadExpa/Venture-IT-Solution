@@ -30,8 +30,7 @@ function MigrationAzureCloud() {
             Feb 18, 2025
           </p>
           <p className=" md:text-lg text-gray-600 text-justify">
-            Efficient, secure Azure migration with data optimization, app
-            rehosting, and post-migration support.
+            Efficient, secure Azure migration with data optimization, app rehosting, and post-migration support.
           </p>
         </div>
       </div>
@@ -46,15 +45,13 @@ function MigrationAzureCloud() {
       <div className="flex md:flex-row flex-col justify-between lg:pt-28 pt-5 lg:gap-10 gap-5">
         <div className="border border-gray-300 rounded-2xl p-10 md:w-[28vw] md:h-[75vh] md:sticky md:top-20">
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl font-semibold">Azureo Clud Migration</h1>
+            <h1 className="text-3xl font-semibold">Azure Cloud Migration</h1>
 
             <h2 className=" font-semibold text-gray-600 text-justify">
-              Efficient, secure Azure migration with data optimization, app
-              rehosting, and post-migration support.
+              Efficient and secure Azure migration with data optimization, app rehosting, and post-migration support.
             </h2>
             <p className="text-gray-600 text-justify">
-              Our tailored, end-to-end migration strategy ensured a smooth,
-              zero-downtime transition with optimized cloud architecture.
+              Our tailored, end-to-end migration strategy ensures a smooth, zero-downtime transition with optimized cloud architecture.
             </p>
           </div>
 
@@ -77,13 +74,7 @@ function MigrationAzureCloud() {
             <div>
               <h1 className="font-semibold text-xl">Overview:</h1>
               <p className="text-lg">
-                We executed a flawless migration to Microsoft Azure Cloud are
-                cloud application development services . Enabling our client to
-                harness the full power of the cloud for superior scalability,
-                security, and operational efficiency. Our tailored, end-to-end
-                migration strategy ensured a smooth, zero-downtime transition
-                with optimized cloud architecture.
-              </p>
+              We executed a flawless migration to Microsoft Azure Cloud and cloud application development services, enabling our client to harness the full power of the cloud for superior scalability, security, and operational efficiency. Our tailored, end-to-end migration strategy ensured a smooth, zero-downtime transition with optimized cloud architecture.              </p>
             </div>
             <div className="mt-8">
               <h1 className="font-semibold text-xl">Challenge:</h1>

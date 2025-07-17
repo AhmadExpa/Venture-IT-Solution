@@ -31,7 +31,7 @@ function TransformAiandMl() {
       icon: FaChartLine,
       title: "Scalable Infrastructure for Tomorrow’s Demands",
       description:
-        "Future-proof your digital transformation journey with a resilient, scalable infrastructure that is adaptive to increasing data volumes and helps evolving business",
+        "Future-proof your digital transformation journey with resilient, scalable infrastructure that adapts to increasing data volumes and supports evolving business needs.",
     },
   ];
 

@@ -7,7 +7,7 @@ const LLMServices = [
     icon: <Image src={require("../../../assets/images/llms3.png")} />,
   },
   {
-    name: "LlaMa",
+    name: "Llama",
     icon: <Image src={require("../../../assets/images/llms2.png")} />,
   },
   {

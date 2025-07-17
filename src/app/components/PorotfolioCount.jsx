@@ -30,7 +30,7 @@ const PorotfolioCount = () => {
     },
      {
       value: inView ? (
-        <CountUp end={30} duration={10} suffix="+" separator="," />
+        <CountUp end={300} duration={10} suffix="+" separator="," />
       ) : (
         "300+"
       ),
