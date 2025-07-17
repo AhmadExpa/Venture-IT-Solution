@@ -25,7 +25,7 @@ const LLMServices = [
     icon: <Image src={require("../../../assets/images/geminilogo.png")} width={40} height={40} alt="Gemini" />,
   },
   {
-    name: "LlaMa",
+    name: "Llama",
     icon: <Image src={require("../../../assets/images/llms2.png")} width={40} height={40} alt="LlaMa" />,
   },
   {
@@ -48,7 +48,7 @@ const MlServices = [
     icon: <Image src={require("../../../assets/images/ml1.png")} />,
   },
   {
-    name: "pyTorch",
+    name: "PyTorch",
     icon: <Image src={require("../../../assets/images/ml3.png")} />,
   },
   {

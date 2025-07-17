@@ -16,13 +16,13 @@ const sectionsData = [
     paragraph:
       "Committed to meeting the industry standards and monitoring frameworks.",
     paragraph2:
-      "We provide real-time compliance monitoring and security checks to ensure your IT systems meet industry standards and regulations. Our solutions help maintain continuous compliance and reduce risks",
+      "We provide real-time compliance monitoring and security checks to ensure your IT systems meet industry standards and regulations. Our solutions help maintain continuous compliance and reduce risks.",
   },
   {
     id: "disaster-recovery",
     heading: "Disaster Recovery",
     paragraph:
-      " instant recovery solutions to minimize downtime and data loss.",
+      " instant recovery solutions to minimizing downtime and data loss.",
     paragraph2:
       "Provide cloud-based solutions for data backup and disaster recovery to assure business continuity, minimize downtime, and loss in unexpected failures.",
   },

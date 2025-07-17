@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
     "Data warehousing and data modelling services",
     " Full-stack app development using .NET, Java, and Python stack with GenAI capabilities",
     " Infra services including Cloud infra design, DevOps (CI/CD) etc.Infra services, including cloud infrastructure design, DevOps (CI/CD), etc.",
-    "Proven ability to deliver under pressure while exceeding expectations",
+    //"Proven ability to deliver under pressure while exceeding expectations",
   ];
 
   return (

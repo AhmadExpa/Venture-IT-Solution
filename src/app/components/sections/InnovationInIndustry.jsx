@@ -145,7 +145,7 @@ const cardData = [
   {
     title: "Sports",
     image: img7,
-    description: "Developing innovative platforms for sports management and fan...",
+    description: "Developing innovative platforms for sports management and fans...",
     link: "/industries#sport", // Add the link here
   },
   {

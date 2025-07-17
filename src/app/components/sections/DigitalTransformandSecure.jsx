@@ -13,19 +13,19 @@ function DigitalTransformandSecure() {
       icon: FaBolt,
       title: "Smoothly running Operations, showcase Capabilities ",
       description:
-        "  We strategically deploy cutting-edge technologies to streamline business operations and expand system capabilities, providing applicable, real-time data for decision-making, and high-impact outcomes.",
+        " We strategically deploy cutting-edge technologies to streamline business operations and expand system capabilities, providing applicable, real-time data for decision-making and delivering high-impact outcomes.",
     },
     {
       icon: FaExchangeAlt,
       title: "Connected Ecosystem",
       description:
-        "  Accelerate business growth by embedding different platforms, business management solutions, and services, connecting partner and customer ecosystems for clear communication and a rise in data flow.",
+        "Accelerate business growth by integrating various platforms, business management solutions, and services—connecting partner and customer ecosystems for clear communication and increased data flow.",
     },
     {
       icon: FaShieldAlt,
       title: "Streamlined Digital Transformation",
       description:
-        "  Carry out processes for efficiency, and provide progressive customer experiences to increase loyalty for delivering high-impact growth leading to sustainability.",
+        "Execute processes for greater efficiency and deliver progressive customer experiences to boost loyalty, resulting in high-impact growth and long-term sustainability.",
     },
     {
       icon: FaBalanceScale,

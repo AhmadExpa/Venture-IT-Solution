@@ -31,7 +31,7 @@ const sectionsData = [
     id: "data-integration-and-apis",
     heading: "Data Integration and APIs",
     paragraph:
-      " We implement robust data integration and API solutions to efficient results",
+      " We implement robust data integration and API solutions to deliver efficient results.",
     paragraph2:
       "Our team implements robust API solutions and data integration strategies to improve system interoperability. ",
       paragraph2: "We specialize in RESTful APIs, ETL pipelines, and real-time data flow to increase efficiency."

@@ -13,7 +13,7 @@ const sectionsData = [
     id: "cloud-strategy-consulting",
     heading: "Cloud Strategy Consulting",
     paragraph:
-      "explore cloud potential with custom-made strategies for efficiency and growth.",
+      "Explore cloud potential with custom-made strategies for efficiency and growth.",
     paragraph2:
       "expert consultants help businesses optimize cloud adoption with proper strategies,  operational efficiency, cost reduction, and constant growth. We ensure strategic alignment with business objectives",
   
@@ -22,7 +22,7 @@ const sectionsData = [
     id: "cloud-migration",
     heading: "Cloud Migration",
     paragraph:
-      " easy-going applications and workloads to the cloud with minimal disruption.",
+      " Seamlessly migrate applications and workloads to the cloud with minimal disruption.",
     paragraph2:
       "We execute seamless cloud migrations, transitioning critical applications and workloads without interruptions, and applying best practices for data integrity and security.",
     
@@ -31,7 +31,7 @@ const sectionsData = [
     id: "azure-cloud-service",
     heading: "Azure Cloud Service",
     paragraph:
-      "Managing and maintaining cloud infrastructure and applications on behalf of clients, ensuring optimal performance, scalability, and cost effi ciency.",
+      "Manage and maintain cloud infrastructure and applications on behalf of clients, ensuring optimal performance, scalability, and cost efficiency.",
     paragraph2:
       "We utilize Microsoft Azure to design and deploy cloud-native solutions that are cost-efficient, scalable, and deliver the required performance. Our services include cloud optimization and ongoing managed services for the best results.",
     
