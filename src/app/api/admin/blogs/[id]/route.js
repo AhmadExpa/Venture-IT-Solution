@@ -188,9 +188,9 @@ export async function GET(req, context) {
 export async function DELETE(req, context) {
   await dbConnect();
 
-  const { params } = await context;
+  const { id } = await context.params;
   try {
-    const blog = await BlogPost.findByIdAndDelete(params.id);
+    const blog = await BlogPost.findByIdAndDelete(id);
     if (!blog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }

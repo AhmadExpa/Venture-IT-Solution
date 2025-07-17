@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/typography": "^0.5.16",
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.0",
     "formidable": "^3.5.4",
     "framer-motion": "^12.4.1",
     "gsap": "^3.12.7",
+    "marked": "^16.1.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.3",
     "next": "15.1.6",

@@ -1,26 +1,44 @@
-"use client"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   FiHome,
   FiFileText,
   FiMail,
-  FiSettings,
   FiUsers,
-  FiFilePlus
-} from "react-icons/fi"
+  FiFilePlus,
+} from "react-icons/fi";
 
 export default function AdminSidebar() {
-  const pathname = usePathname()
-  
+  const pathname = usePathname();
+
   const menuItems = [
-    { href: "/admin", label: "Dashboard", icon: <FiHome className="text-lg" /> },
-    { href: "/admin/blogs", label: "Blog Posts", icon: <FiFileText className="text-lg" /> },
-    { href: "/admin/blogs/new", label: "New Blog", icon: <FiFilePlus className="text-lg" /> },
-    { href: "/admin/submissions", label: "Submissions", icon: <FiMail className="text-lg" /> },
-    { href: "/admin/users", label: "Users", icon: <FiUsers className="text-lg" /> },
-    { href: "/admin/settings", label: "Settings", icon: <FiSettings className="text-lg" /> },
-  ]
+    {
+      href: "/admin",
+      label: "Dashboard",
+      icon: <FiHome className="text-lg" />,
+    },
+    {
+      href: "/admin/blogs",
+      label: "Blog Posts",
+      icon: <FiFileText className="text-lg" />,
+    },
+    {
+      href: "/admin/blogs/new",
+      label: "New Blog",
+      icon: <FiFilePlus className="text-lg" />,
+    },
+    {
+      href: "/admin/submissions",
+      label: "Submissions",
+      icon: <FiMail className="text-lg" />,
+    },
+    {
+      href: "/admin/users",
+      label: "Users",
+      icon: <FiUsers className="text-lg" />,
+    },
+  ];
 
   return (
     <div className="w-64 bg-gray-800 text-white flex flex-col min-h-screen">
@@ -33,8 +51,8 @@ export default function AdminSidebar() {
             key={item.href}
             href={item.href}
             className={`flex items-center px-4 py-3 ${
-              pathname === item.href 
-                ? "bg-gray-700 border-l-4 border-indigo-500" 
+              pathname === item.href
+                ? "bg-gray-700 border-l-4 border-indigo-500"
                 : "hover:bg-gray-700"
             }`}
           >
@@ -47,5 +65,5 @@ export default function AdminSidebar() {
         © {new Date().getFullYear()} Venture IT Solutions
       </div>
     </div>
-  )
+  );
 }

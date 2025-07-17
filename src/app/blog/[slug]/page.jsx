@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { marked } from "marked";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { IoMdArrowForward } from "react-icons/io";
 import dbConnect from "@/lib/dbConnect";
@@ -9,15 +10,17 @@ import BlogPost from "@/models/BlogPost";
 export const dynamic = "force-dynamic";
 
 export default async function BlogPage({ params }) {
-  const { slug } = params;
+  const slug = (await params).slug;
 
   await dbConnect();
   const blog = await BlogPost.findOne({ slug }).lean();
 
-  if (!blog) return <div className="pt-28 text-center text-2xl">Blog not found</div>;
+  if (!blog)
+    return <div className="pt-28 text-center text-2xl">Blog not found</div>;
 
   const landingImage = blog.images?.[0];
   const otherImages = blog.images?.slice(1) || [];
+  const contentHtml = marked(blog.content || "");
 
   return (
     <div className="md:px-12 px-5 pt-28">
@@ -73,8 +76,10 @@ export default async function BlogPage({ params }) {
         </div>
 
         <div className="md:w-[59vw] p-3">
-          <div className="prose prose-lg text-gray-700 max-w-none"
-               dangerouslySetInnerHTML={{ __html: blog.content }} />
+          <div
+            className="prose-custom prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
 
           {otherImages.length > 0 && (
             <div className="mt-16">

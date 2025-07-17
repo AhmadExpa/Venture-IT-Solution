@@ -12,19 +12,15 @@ function LatestStories() {
       .then((data) => setBlogs(data));
   }, []);
 
-  const articles = blogs.reduce((acc, blog, index) => {
-    const groupIndex = Math.floor(index / 2);
-    if (!acc[groupIndex]) acc[groupIndex] = { items: [] };
-
-    acc[groupIndex].items.push({
+  const articles = blogs.map(
+    (blog) => ({
       image: blog.images[0]?.path || "/default.jpg",
       title: blog.title,
       slug: blog.slug,
       description: blog.excerpt,
-    });
-
-    return acc;
-  }, []);
+    }),
+    []
+  );
 
   return (
     <ExploreDeeper
