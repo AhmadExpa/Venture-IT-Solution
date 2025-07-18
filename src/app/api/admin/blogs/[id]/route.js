@@ -1,11 +1,12 @@
-import { writeFile, unlink } from "fs/promises";
-import path from "path";
-import fs from "fs";
 import { NextResponse } from "next/server";
 import formidable from "formidable";
 import { Readable } from "stream";
 import dbConnect from "@/lib/dbConnect";
 import BlogPost from "@/models/BlogPost";
+import { uploadToS3, deleteFromS3 } from "@/lib/s3Upload";
+import fs from "fs";
+import crypto from "crypto";
+import path from "path";
 
 export const config = {
   api: {
@@ -13,39 +14,20 @@ export const config = {
   },
 };
 
-// Convert NextRequest to Node-compatible request
 async function getNodeRequest(webRequest) {
   const body = await webRequest.arrayBuffer();
   const buffer = Buffer.from(body);
   const stream = Readable.from(buffer);
-
   const headers = {};
   webRequest.headers.forEach((value, key) => {
     headers[key.toLowerCase()] = value;
   });
-
   headers["content-length"] = buffer.length.toString();
-
-  return Object.assign(stream, {
-    headers,
-    method: webRequest.method,
-    url: "",
-  });
+  return Object.assign(stream, { headers, method: webRequest.method, url: "" });
 }
 
-// Parse with formidable
 function parseForm(request) {
-  const uploadDir = path.join(process.cwd(), "public/blogs");
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  const form = formidable({
-    multiples: false,
-    uploadDir,
-    keepExtensions: true,
-  });
-
+  const form = formidable({ multiples: true, keepExtensions: true });
   return new Promise((resolve, reject) => {
     form.parse(request, (err, fields, files) => {
       if (err) reject(err);
@@ -67,86 +49,47 @@ export async function PUT(req, context) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
 
-    // Process image deletions
+    // Delete selected images from S3
     if (fields.imagesToDelete) {
-      try {
-        const imagesToDelete = JSON.parse(fields.imagesToDelete[0]);
-        for (const imageId of imagesToDelete) {
-          const img = blog.images.find((i) => i._id.toString() === imageId);
-          if (img?.path) {
-            const imgPath = path.join(process.cwd(), "public", img.path);
-            try {
-              await unlink(imgPath);
-              console.log(`Deleted image: ${imgPath}`);
-            } catch (unlinkErr) {
-              console.error("Error deleting image:", unlinkErr);
-            }
-          }
+      const imagesToDelete = JSON.parse(fields.imagesToDelete[0]);
+      for (const imageId of imagesToDelete) {
+        const img = blog.images.find((i) => i._id.toString() === imageId);
+        if (img?.path) {
+          await deleteFromS3(img.path);
         }
-        blog.images = blog.images.filter(
-          (i) => !imagesToDelete.includes(i._id.toString())
-        );
-      } catch (err) {
-        console.error("Error processing image deletions:", err);
       }
+      blog.images = blog.images.filter(
+        (i) => !imagesToDelete.includes(i._id.toString())
+      );
     }
 
-    // Process existing images
+    // Preserve existing images
     if (fields.existingImages) {
-      try {
-        const existingImages = Array.isArray(fields.existingImages)
-          ? fields.existingImages
-          : [fields.existingImages];
-
-        blog.images = [];
-        for (const imgStr of existingImages) {
-          try {
-            const img = JSON.parse(imgStr);
-            if (img._id) blog.images.push(img);
-          } catch (parseErr) {
-            console.error("Error parsing existing image:", parseErr);
-          }
-        }
-      } catch (err) {
-        console.error("Error processing existing images:", err);
+      const existingImages = Array.isArray(fields.existingImages)
+        ? fields.existingImages
+        : [fields.existingImages];
+      blog.images = [];
+      for (const imgStr of existingImages) {
+        const img = JSON.parse(imgStr);
+        if (img._id) blog.images.push(img);
       }
     }
 
-    // Process new images
-    let newImages = [];
-    const fileArray = files.images
-      ? Array.isArray(files.images)
-        ? files.images
-        : [files.images]
+    // Upload new images to S3
+    const fileArray = Array.isArray(files.images)
+      ? files.images
+      : files.images
+      ? [files.images]
       : [];
-
+    const newImages = [];
     for (const file of fileArray) {
-      if (file.filepath) {
-        try {
-          const fileName = `${Date.now()}-${file.originalFilename}`;
-          const newPath = path.join(process.cwd(), "public/blogs", fileName);
+      const ext = path.extname(file.originalFilename || file.filepath);
+      const randomName = crypto.randomBytes(16).toString("hex").replace(/\s+/g, "-") + ext;
 
-          // Create directory if it doesn't exist
-          const dir = path.dirname(newPath);
-          if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-          }
-
-          await fs.promises.copyFile(file.filepath, newPath);
-          await fs.promises.unlink(file.filepath); // <-- remove temp file
-          newImages.push({
-            name: file.originalFilename,
-            path: `/blogs/${fileName}`,
-            size: file.size,
-            type: file.mimetype,
-          });
-        } catch (fileErr) {
-          console.error("Error processing new image:", fileErr);
-        }
-      }
+      const uploaded = await uploadToS3(file, randomName); // 👈 pass random name
+      fs.unlinkSync(file.filepath);
+      newImages.push(uploaded);
     }
-
-    // Update images array
     blog.images = [...blog.images, ...newImages];
 
     // Update other fields
@@ -187,26 +130,15 @@ export async function GET(req, context) {
 
 export async function DELETE(req, context) {
   await dbConnect();
-
   const { id } = await context.params;
   try {
     const blog = await BlogPost.findByIdAndDelete(id);
     if (!blog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
-
-    // Delete image
-    if (blog.images) {
-      for (const img of blog.images) {
-        const imgPath = path.join(process.cwd(), "public", img.path);
-        try {
-          await unlink(imgPath);
-        } catch {
-          console.error("Error deleting image:", imgPath);
-        }
-      }
+    for (const img of blog.images) {
+      await deleteFromS3(img.path);
     }
-
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(

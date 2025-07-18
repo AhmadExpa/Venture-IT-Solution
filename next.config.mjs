@@ -9,6 +9,14 @@ const nextConfig = {
   async rewrites() {
     return [];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'venture-assets.s3.us-east-1.amazonaws.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
