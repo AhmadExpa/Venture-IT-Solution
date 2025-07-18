@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { marked } from "marked";
+
 import { MdOutlineArrowBack } from "react-icons/md";
 import { IoMdArrowForward } from "react-icons/io";
 import dbConnect from "@/lib/dbConnect";
@@ -20,7 +20,6 @@ export default async function BlogPage({ params }) {
 
   const landingImage = blog.images?.[0];
   const otherImages = blog.images?.slice(1) || [];
-  const contentHtml = marked(blog.content || "");
 
   return (
     <div className="md:px-12 px-5 pt-28">
@@ -78,7 +77,7 @@ export default async function BlogPage({ params }) {
         <div className="md:w-[59vw] p-3">
           <div
             className="prose-custom prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
+            dangerouslySetInnerHTML={{ __html: blog.content }}
           />
 
           {otherImages.length > 0 && (

@@ -2,9 +2,11 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import BlogPost from "@/models/BlogPost";
 import formidable from "formidable";
-import fs from "fs";
-import path from "path";
 import { Readable } from "stream";
+import { uploadToS3 } from "@/lib/s3Upload";
+import fs from "fs";
+import crypto from "crypto";
+import path from "path";
 
 export const config = {
   api: {
@@ -12,7 +14,6 @@ export const config = {
   },
 };
 
-// Helper to convert Web Request to Node-compatible req
 async function getNodeRequest(webRequest) {
   const body = await webRequest.arrayBuffer();
   const buffer = Buffer.from(body);
@@ -23,29 +24,19 @@ async function getNodeRequest(webRequest) {
     headers[key.toLowerCase()] = value;
   });
 
-  // Ensure content-length is passed correctly
   headers["content-length"] = buffer.length.toString();
 
   return Object.assign(stream, {
     headers,
     method: webRequest.method,
-    url: "", // Required by formidable but not used
+    url: "",
   });
 }
 
 export async function POST(webRequest) {
   await dbConnect();
 
-  const uploadDir = path.join(process.cwd(), "public/blogs");
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  const form = formidable({
-    multiples: true,
-    uploadDir,
-    keepExtensions: true,
-  });
+  const form = formidable({ multiples: true, keepExtensions: true });
 
   try {
     const nodeReq = await getNodeRequest(webRequest);
@@ -53,43 +44,38 @@ export async function POST(webRequest) {
     const { fields, files } = await new Promise((resolve, reject) => {
       form.parse(nodeReq, (err, fields, files) => {
         if (err) reject(err);
-        console.log("Parsed files:", files); // <-- see if any files are detected
-        resolve({ fields, files });
+        else resolve({ fields, files });
       });
     });
 
-    const fieldName = "images"; // Match frontend field name
-    const fileArray = files[fieldName]
-      ? Array.isArray(files[fieldName])
-        ? files[fieldName]
-        : [files[fieldName]]
+    const fileArray = Array.isArray(files.images)
+      ? files.images
+      : files.images
+      ? [files.images]
       : [];
-    const processedFiles = fileArray
-      .filter((file) => !!file)
-      .map((file) => ({
-        name: file.originalFilename,
-        path: `/blogs/${path.basename(file.filepath)}`,
-        size: file.size,
-        type: file.mimetype,
-      }));
 
-    const flattenedFields = Object.fromEntries(
-      Object.entries(fields).map(([key, value]) => [
-        key,
-        Array.isArray(value) ? value[0] : value,
-      ])
-    );
+    const uploadedImages = [];
+    for (const file of fileArray) {
+      const ext = path.extname(file.originalFilename || file.filepath);
+      const randomName =
+        crypto.randomBytes(16).toString("hex").replace(/\s+/g, "-") + ext;
 
+      const uploaded = await uploadToS3(file, randomName); // 👈 pass random name
+      fs.unlinkSync(file.filepath);
+      uploadedImages.push(uploaded);
+    }
+
+    const flat = (f) => (Array.isArray(f) ? f[0] : f);
     const blog = new BlogPost({
-      title: flattenedFields.title,
-      slug: flattenedFields.slug,
-      excerpt: flattenedFields.excerpt,
-      content: flattenedFields.content,
-      images: processedFiles,
+      title: flat(fields.title),
+      slug: flat(fields.slug),
+      excerpt: flat(fields.excerpt),
+      content: flat(fields.content),
+      images: uploadedImages,
     });
-    await blog.save();
 
-    return NextResponse.json({ success: true }, { status: 201 });
+    await blog.save();
+    return NextResponse.json({ success: true, blog }, { status: 201 });
   } catch (error) {
     console.error("Form submission error:", error);
     return NextResponse.json(

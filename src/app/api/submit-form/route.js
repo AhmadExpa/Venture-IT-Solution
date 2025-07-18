@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import FormSubmission from "@/models/FormSubmission";
 import formidable from "formidable";
-import fs from "fs";
-import path from "path";
 import { Readable } from "stream";
+import { uploadToS3 } from "@/lib/s3Upload"; // Make sure you have this function ready
 
 export const config = {
   api: {
@@ -12,7 +11,6 @@ export const config = {
   },
 };
 
-// Helper to convert Web Request to Node-compatible req
 async function getNodeRequest(webRequest) {
   const body = await webRequest.arrayBuffer();
   const buffer = Buffer.from(body);
@@ -23,29 +21,19 @@ async function getNodeRequest(webRequest) {
     headers[key.toLowerCase()] = value;
   });
 
-  // Ensure content-length is passed correctly
   headers["content-length"] = buffer.length.toString();
 
   return Object.assign(stream, {
     headers,
     method: webRequest.method,
-    url: "", // Required by formidable but not used
+    url: "",
   });
 }
 
 export async function POST(webRequest) {
   await dbConnect();
 
-  const uploadDir = path.join(process.cwd(), "public/uploads");
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  const form = formidable({
-    multiples: true,
-    uploadDir,
-    keepExtensions: true,
-  });
+  const form = formidable({ multiples: true, keepExtensions: true });
 
   try {
     const nodeReq = await getNodeRequest(webRequest);
@@ -53,20 +41,21 @@ export async function POST(webRequest) {
     const { fields, files } = await new Promise((resolve, reject) => {
       form.parse(nodeReq, (err, fields, files) => {
         if (err) reject(err);
-        console.log("Parsed files:", files); // <-- see if any files are detected
         resolve({ fields, files });
       });
     });
 
     const fileArray = Array.isArray(files.files) ? files.files : [files.files];
-    const processedFiles = fileArray
-      .filter((file) => !!file)
-      .map((file) => ({
-        name: file.originalFilename,
-        path: `/uploads/${path.basename(file.filepath)}`,
-        size: file.size,
-        type: file.mimetype,
-      }));
+    const processedFiles = await Promise.all(
+      fileArray.filter(Boolean).map(async (file) => {
+        const randomName = `${Date.now()}-${file.originalFilename}`;
+        const uploaded = await uploadToS3(
+          { ...file, folder: "submissions" },
+          `submissions/${randomName}`
+        );
+        return uploaded;
+      })
+    );
 
     const flattenedFields = Object.fromEntries(
       Object.entries(fields).map(([key, value]) => [
