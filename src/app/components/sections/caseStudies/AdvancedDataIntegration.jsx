@@ -22,7 +22,7 @@ function AdvancedDataIntegration() {
       <div className="lg:flex md:flex-row flex-col justify-between lg:pt-20 pt-5 lg:gap-8">
         <div className="lg:w-[40vw]">
           <h1 className="lg:text-[55px]  md:text-2xl text-xl font-semibold lg:tracking-wide lg:leading-[65px]  ">
-            Advanced Data Integration with SSIS and ETL Tools
+            Advanced-Data Integration with SSIS and ETL Tools
           </h1>
         </div>
 
@@ -31,8 +31,8 @@ function AdvancedDataIntegration() {
             Feb 18, 2025
           </p>
           <p className="lg:text-lg text-gray-600 pt-3 md:p-0 text-justify">
-            ELT and SSIS tools streamline data flow, converting data into
-            actionable business insights.
+            ELT and SSIS tools streamline data flow, converting data into actionable business insights.
+
           </p>
         </div>
       </div>

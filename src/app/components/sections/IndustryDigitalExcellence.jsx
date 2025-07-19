@@ -6,7 +6,7 @@ const sectionsData = [
     id: "education-solutions",
     heading: "Education Solutions",
     paragraph:
-      "We create customized, tech-driven platforms to enhance learning, streamline management, and improve cloud based educational experiences.",
+      "We create customized, tech-driven platforms to enhance learning, streamline management, and improve cloud-based educational experiences.",
     paragraph2:
       "Our development team holds the expertise to build well-structured, well-defined e-learning solutions that offer immense value to learners and educators ensuring smooth connectivity and personalized data input.",
       path: "/industries#education",
@@ -89,10 +89,7 @@ function IndustryDigitalExcellence() {
   return (
     <EstimateProject
       mainHeading="Your All-in-One Solution For Digital Excellence"
-      description="We are dealing with all kinds of business sizes and industries,
-      crafting excellence in the ever-evolving digital landscape. Whatever your
-     project goals are, our IT solutions bring security and efficiency,
-      reducing manual workloads and automating key processes."
+      description="We work with all kinds of business sizes and industries, crafting excellence in the ever-evolving digital landscape. Whatever your project goals are, our IT solutions bring security and efficiency, reducing manual workloads and automating key processes."
       buttonText="GET STARTED"
       sections={sectionsData}
     />

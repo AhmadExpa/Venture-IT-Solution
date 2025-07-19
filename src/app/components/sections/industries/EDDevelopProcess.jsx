@@ -22,7 +22,7 @@ const contentData = [
     bgImg: "./blueprints.jpg",
     heading: " Blueprints towards Success: Strategies for your project",
     paragraph:
-      "We assist you regarding the detailed plan that includes project layout, timeline, deliverables, budgets, and responsibilities",
+      "We assist you with a detailed plan that includes the project layout, timeline, deliverables, budgets, and responsibilities.",
   },
   {
     image: img3,
@@ -30,7 +30,7 @@ const contentData = [
     bgImg: "./digitalnew.jpg",
     heading: "Seamless Execution with Transparent Collaboration",
     paragraph:
-      "We communicate clearly and provide updates regularly to ensure everything is visible and control over the project's progress.",
+      "We communicate clearly and provide regular updates to ensure full visibility and control over the project's progress.",
   },
   {
     image: img4,
@@ -38,15 +38,15 @@ const contentData = [
     bgImg: "./modernsolutionbg.jpg",
     heading: "  Latest  Solutions for the  Development Process ",
     paragraph:
-      "With expertise in NET, JAVA, ORACLE, & SQL, we deliver adaptable solutions for the required workflow",
+      "With expertise in .NET, Java, Oracle, and SQL, we deliver adaptable solutions for the required workflow.",
   },
   {
     image: img5,
     buildHover: "/build5.png",
     bgImg: "./visionbg.jpg",
-    heading: "  Converting vision into Reality- comes the  Final product",
+    heading: "  Converting vision into Reality- comes the Final Product",
     paragraph:
-      "Through an interactive and automated approach, we focus on the end user to exceed expectations by setting up testing for bugs, updating documentation and analytics tools, etc.",
+      "Through an interactive and automated approach, we focus on the end user to exceed expectations by setting up testing for bugs, updating documentation, analytics tools, etc.",
   },
 ];
 
@@ -57,7 +57,7 @@ function EDDevelopProcess() {
     // heading: "EdTech Development Process",
     heading: "From Screens To Customize Project Plan",
     paragraph:
-      "Our agile EdTech development process transforms yourideas into high-performing digital products. With a focus on speed, quality, and user experience, we deliver exceptional results.",
+      "Our agile EdTech development process transforms your ideas into high-performing digital products. With a focus on speed, quality, and user experience, we deliver exceptional results.",
   };
 
   return (

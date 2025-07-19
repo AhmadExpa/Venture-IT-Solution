@@ -54,10 +54,7 @@ function Future_Enterprise() {
             </h1>
 
             <h2 className="font-semibold text-gray-600 lg:text-justify">
-              Discover the emerging trends in enterprise software that will
-              shape the future of ERP systems.Key innovations like AI,
-              automation are set to redefine efficiency and agility in
-              businesses.
+              Discover the emerging trends in enterprise software that will shape the future of ERP systems. Key innovations like AI and automation are set to redefine efficiency and agility in businesses.
             </h2>
             <p className="text-gray-600 lg:text-justify">
               Stay ahead by understanding how these advancements will impact ERP
@@ -81,7 +78,7 @@ function Future_Enterprise() {
               and resources. These repetitive tasks not only slow down progress
               but often lead to human error. With custom job creation and
               workflow automation, we can help you design and implement
-              processes that cut down on busywork and make your operations run
+              processes that cut down on busy work and make your operations run
               like a well-oiled machine.
             </p>
             <p className="text-xl text-gray-600 lg:leading-8 lg:text-justify">

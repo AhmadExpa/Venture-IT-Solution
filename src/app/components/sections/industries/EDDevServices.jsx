@@ -352,14 +352,11 @@ function EDDevServices() {
 
             <div className="overflow-hidden max-h-[100px] transition-all duration-500 group-hover:max-h-[260px]">
               <p className="text-white pt-2">
-              With our skillful team of developers, we provide web development services that enhance your eCommerce store to fulfill the demands of modern consumers
+              With our skillful team of developers, we provide web development services that enhance your eCommerce store to fulfill the demands of modern consumers.
 
               </p>
               <p className="text-white pt-2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                By Using upgraded technologies, we can perfectly infuse new
-                vitality into your company through cost-effective and quality
-                eCommerce software development and help expand your ROI, sales,
-                and presence in the business market.
+                By using upgraded technologies, we can perfectly infuse new vitality into your company through cost-effective and quality eCommerce software development and help expand your ROI, sales, and presence in the business market.
               </p>
             </div>
           </div>
@@ -387,15 +384,11 @@ function EDDevServices() {
             />
             <div className="overflow-hidden max-h-[100px] transition-all duration-500 group-hover:max-h-[260px]">
               <p className="text-white pt-2">
-              Our web applications development company[KW] enhances efficiency, improves customer engagement, and simplifies transaction processes.  It also helps you to deliver seamless real estate experiences.
+              Our web applications development company [KW] enhances efficiency, improves customer engagement, and simplifies transaction processes. It also helps you deliver seamless real estate experiences.
 
               </p>
               <p className="text-white pt-2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                Our web applications development company leverages the ultimate
-                potential of Artificial Intelligence, the Internet of Things,
-                Data Science, and Virtual and Augmented Reality to assist
-                companies in optimizing workflow, achieving higher efficiency,
-                and gaining competitive benefits.
+                Our web applications development company leverages the full potential of Artificial Intelligence, the Internet of Things, Data Science, and Virtual and Augmented Reality.
               </p>
             </div>
           </div>
@@ -420,8 +413,7 @@ function EDDevServices() {
               }}
             />
             <p className="text-white pt-2">
-            As a Recognized US Software development company [KW] , we innovate the HR & Finance sector with reliable, scalable software that aligns operations and boosts efficiency.
-
+As a recognized US software development company [KW], we innovate the HR and Finance sectors with reliable, scalable software that aligns operations and boosts efficiency.
             </p>
             <div className="overflow-hidden max-h-[100px] transition-all duration-500 group-hover:max-h-[260px]">
               <p className="text-white pt-2">
