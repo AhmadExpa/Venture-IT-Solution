@@ -150,7 +150,7 @@ const CompanyShowcase = () => {
       industry: "Healthcare",
       country: "Poland",
       description:
-        "Customized job creation automates tasks, reduces hectic manual workload and optimizes processes.",
+        "Customized job creation automates tasks, reduces hectic manual workload, and optimizes processes.",
     },
   ];
 

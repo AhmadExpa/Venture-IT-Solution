@@ -31,7 +31,7 @@ function WorkflowAutomation() {
             Feb 18, 2025
           </p>
           <p className="md:text-lg text-gray-600 text-justify">
-            Customized job creation automates tasks, reduces hectic manual workload and optimizes processes.
+            Customized job creation automates tasks, reduces hectic manual workload, and optimizes processes.
           </p>
         </div>
       </div>
@@ -50,9 +50,7 @@ function WorkflowAutomation() {
               workload and optimizes processes.
             </h2>
             <p className="text-gray-600 text-justify">
-              We empowered a client by implementing custom job creation and
-              workflow automation solutions that streamlined their business
-              processes.
+              We empowered a client by implementing custom job creation and workflow automation solutions that streamlined their business processes.
             </p>
           </div>
 
@@ -76,7 +74,8 @@ function WorkflowAutomation() {
             <div>
               <h1 className="font-semibold text-xl">Overview:</h1>
               <p className="text-lg">
-                We empowered a client by implementing custom job creation and workflow automation solutions that streamlined their business processes. From automating repetitive tasks to integrating third-party systems, our tailored solutions improved operational efficiency, reduced manual tasks, and delivered faster results.
+                We empowered a client by implementing custom job creation and workflow automation solutions that streamlined their business processes. From automating repetitive tasks, to integrating third-party systems, our tailored solutions improved operational efficiency, reduced manual tasks, and delivered faster results.
+
               </p>
             </div>
             <div className="mt-8">

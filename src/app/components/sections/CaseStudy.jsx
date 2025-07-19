@@ -15,7 +15,7 @@ const CaseStudy = () => {
   const slides = [
     {
       category: "Data Integration",
-      title: "Advanced Data Integration with SSIS and ETL Tools",
+      title: "Advanced-Data Integration with SSIS and ETL Tools",
       logo: Logo,
       bgImage: img1,
       link: "/caseStudy/Advanced-data-integration",
