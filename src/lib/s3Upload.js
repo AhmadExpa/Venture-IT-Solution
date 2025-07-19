@@ -12,7 +12,8 @@ const s3 = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_KEY,
   },
 });
-
+console.log("AWS Region:", process.env.AWS_REGION);
+console.log("Bucket:", process.env.S3_BUCKET_NAME);
 export async function uploadToS3(file, filename) {
   const fileStream = fs.createReadStream(file.filepath);
   const bucket = process.env.AWS_BUCKET;
