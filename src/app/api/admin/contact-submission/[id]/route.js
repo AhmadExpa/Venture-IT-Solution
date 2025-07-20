@@ -1,4 +1,3 @@
-// src/app/api/admin/contact-submissions/[id]/route.js
 import { NextResponse } from 'next/server';
 import ContactSubmission from '@/models/ContactSubmission';
 import dbConnect from '@/lib/dbConnect';
