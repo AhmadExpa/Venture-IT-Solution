@@ -27,12 +27,7 @@ const about = () => {
             {/* Paragraphs */}
             <div className="flex flex-col md:items-end lg:space-y-3 lg:mb-0 md:mb-10 mb-0x">
               <p className="text-lg md:text-xl text-gray-600 w-full md:w-[80%]">
-                Venture IT Solutions is the trusted name in advanced technology
-                solutions, operating under the official legal entity YSR
-                Associates INC. While our clients know us as YSR Associates INC, we
-                are proud to operate under the Venture IT Solutions brand, which
-                reflects our commitment to innovation, excellence, and
-                forward-thinking in the IT industry.
+                Venture IT Solutions is a trusted name in advanced technology solutions, operating under the official legal entity YSR Associates, INC. While our clients know us as YSR Associates, INC, we are proud to operate under the Venture IT Solutions brand, which reflects our commitment to innovation, excellence, and forward-thinking in the IT industry.
               </p>
 
               <p className="text-lg md:text-xl text-gray-600 w-full md:w-[80%]">

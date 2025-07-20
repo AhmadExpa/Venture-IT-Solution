@@ -10,13 +10,10 @@ const IntelligentSoftwares = () => {
         </h2>
         <div className=" text-gray-600 max-w-2xl">
           <p className="">
-            Founded in 2019 by Rafiq Lakhani on five core principles —
-            dedication, professionalism, work ethics, quality, and commitment.
+            Founded in 2019 by Rafiq Lakhani on five core principles — dedication, professionalism, work ethic, quality, and commitment.
           </p>
           <p className="mt-5">
-            With a mission to rank among the top 3% of U.S. developers, a team
-            of 5 visionary individuals began to deliver software solutions with
-            a commitment to excellence.{" "}
+            With a mission to rank among the top 3% of U.S. developers, a team of five visionary individuals began delivering software solutions with a commitment to excellence.
           </p>
         </div>
       </div>
@@ -46,11 +43,7 @@ const IntelligentSoftwares = () => {
             Nurturing the Tech Ecosystem
           </h3>
           <p className="text-gray-600">
-            We own our responsibilities and believe in supporting our tech
-            community. Along with management processes, tech stacks and the
-            latest infrastructure, we’re committed to sharing our insights &
-            expertise to maximize project success without compromising on
-            quality.
+            We own our responsibilities and believe in supporting our tech community. In addition to management processes, tech stacks, and the latest infrastructure, we’re committed to sharing our insights and expertise to maximize project success without compromising on quality.
           </p>
         </div>
       </div>

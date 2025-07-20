@@ -31,7 +31,7 @@ function SecuritySpeedScale() {
       icon: FaBalanceScale,
       title: "Zero Trust Architecture",
       description:
-        "Enforcing multi-factor authentication, least-privilege access, and network segmentation,  We remove security gaps and unauthorized accessibility",
+        "By enforcing multi-factor authentication, least-privilege access, and network segmentation, we eliminate security gaps and prevent unauthorized access.",
     },
 
   ];

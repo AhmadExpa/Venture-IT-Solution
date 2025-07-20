@@ -25,8 +25,9 @@ const page = () => {
         heading={
           isLoading || !service
             ? "Loading..."
-            : service.title || "DevOps, Automation and Solution"
+            : service.title || "DevOps, Automation, and Solution"
         }
+
       />
       <DeveopsContent service={service} />
       {/* <DevelopmentBuildBlock /> */}

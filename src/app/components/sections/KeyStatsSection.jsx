@@ -15,11 +15,7 @@ const KeyStatsSection = () => {
           </p>
           <div>
             <p className="text-lg">
-              Welcome to Venture IT Solutions where innovation meets efficiency!
-              Our team of seasoned experts leverages the latest technologies and
-              tools to deliver top-notch solutions that drive your business
-              forward. From rapid project execution to seamless cloud
-              migrations, we are here to transform your vision into reality
+              Welcome to Venture IT Solutions where innovation meets efficiency! Our team of seasoned experts leverages the latest technologies and tools to deliver top-notch solutions that drive your business forward. From rapid project execution to seamless cloud migrations, we are here to transform your vision into reality.
             </p>
           </div>
         </div>

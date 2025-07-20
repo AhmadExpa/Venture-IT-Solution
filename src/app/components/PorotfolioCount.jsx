@@ -30,13 +30,13 @@ const PorotfolioCount = () => {
     },
      {
       value: inView ? (
-        <CountUp end={30} duration={10} suffix="+" separator="," />
+        <CountUp end={29} duration={10} suffix="+" separator="," />
       ) : (
         "300+"
       ),
       buttonLabel: "Satisfied Clients",
       description:
-        "Collaborated with over 300+ clients worldwide and developed 80% innovative softwares with expert developers.",
+        "Collaborated with over 300+ clients worldwide and developed 80% innovative software solutions with expert developers.",
     },
   ];
 

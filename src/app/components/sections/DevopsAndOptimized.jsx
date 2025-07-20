@@ -31,7 +31,7 @@ function DevopsAndOptimized() {
       icon: FaBalanceScale,
       title: " Real-Time Intelligence & Agility",
       description:
-        "Businesses are accessible to instant data processing, monitoring, and decision-making for agility in the fast-moving technological world",
+        "Businesses gain access to instant data processing, monitoring, and decision-making, enabling agility in today’s fast-moving technological world.",
     },
   ];
 

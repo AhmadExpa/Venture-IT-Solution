@@ -117,11 +117,10 @@ function Business_Growth() {
                 Growth
               </h1>
               <p className="text-xl text-gray-600 lg:leading-8 lg:pt-6 pt-3 lg:text-justify">
-                It’s important to understand that custom apps built by a custom
-                software development company bring many benefits and we can’t ignore them
+                It’s important to understand that custom apps built by a custom software development company bring many benefits, and we can’t ignore them.
               </p>
               <p className="text-xl text-gray-600 lg:leading-8 lg:pt-6 pt-3 lg:text-justify">
-                So here are the top advantages that must be on your radar!
+                So, here are the top advantages that must be on your radar!
               </p>
             </div>
             <div className="lg:pt-20 pt-10">
@@ -155,12 +154,7 @@ function Business_Growth() {
                 3. Functionality That Meets Your Needs
               </h1>
               <p className="text-xl text-gray-600 lg:leading-8 lg:pt-7 pt-3 lg:text-justify">
-                Let’s be honest: off-the-shelf applications do not cut it
-                anymore. Mostly, you have to settle for the options offered off
-                the shelf, and your business requirements aren’t addressed. But
-                with top software development company services, you can
-                absolutely strip off the fluff and get what you want. This way,
-                your app runs smoother and faster.
+                Let’s be honest: off-the-shelf applications do not cut it anymore. Mostly, you have to settle for the options offered off the shelf, and your business requirements aren’t addressed. But with top software development company services, you can strip off the fluff and get what you want. This way, your app runs smoother and faster.
               </p>
             </div>
             <div className="lg:pt-20 pt-10">

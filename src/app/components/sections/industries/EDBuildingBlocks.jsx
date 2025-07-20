@@ -59,8 +59,8 @@ function EDBuildingBlocks() {
   return (
     <div>
       <SpeedSecure
-        heading="Building Block for every Industry "
-        subheading="Venture-it-solution thrives on key building blocks that enhance engagement, interactivity, and learning outcomes, shaping a dynamic and impactful educational experience."
+        heading="Building Block for Every Industry "
+        subheading="Venture-IT-Solution thrives on key building blocks that enhance engagement, interactivity, and learning outcomes, shaping a dynamic and impactful educational experience."
         sections={sectionsData}
       />
     </div>

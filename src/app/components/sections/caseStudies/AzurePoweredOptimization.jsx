@@ -86,7 +86,7 @@ function AzurePoweredOptimization() {
                 One of the clients from the healthcare industry, aimed to
                 develop cloud efficiency while delivering high performance and
                 reliability. The cloud application development services as the
-                solution was built for optimal scalability, flexibility, and
+                solution were built for optimal scalability, flexibility, and
                 high performance, ensuring it could evolve along with growth.
                 The Software Development Services team at Venture IT Solution
                 conducted a comprehensive analysis, selecting Azure-native tools

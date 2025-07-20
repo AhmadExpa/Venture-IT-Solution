@@ -7,7 +7,7 @@ const LLMServices = [
     icon: <Image src={require("../../../assets/images/llms3.png")} />,
   },
   {
-    name: "LlaMa",
+    name: "Llama",
     icon: <Image src={require("../../../assets/images/llms2.png")} />,
   },
   {
@@ -176,7 +176,7 @@ const CloudServices = [
     icon: <Image src={require("../../../assets/images/cloude2.png")} />,
   },
   {
-    name: "Google Cloude",
+    name: "Google Cloud",
     icon: <Image src={require("../../../assets/images/cloude3.png")} />,
   },
   {
