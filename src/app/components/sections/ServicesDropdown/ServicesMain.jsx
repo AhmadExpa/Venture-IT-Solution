@@ -1,73 +1,19 @@
+import useServices from "@/hooks/useServices";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 // import { motion } from "framer-motion";
 
 const ServicesMain = ({ setIsServicesHovered }) => {
-  const services = {
-    "Software Development & Product Engineering": {
-      path: "/development",
-      items: [
-        "Mobile Development",
-        "Software Development",
-        "Web Applications",
-        "MVP Development",
-        "SaaS Development",
-        "Full Stack Development",
-        "Product Development",
-      ],
-    },
-    "DevOps, Automation and Solution": {
-      path: "/devops-automation",
-      items: [
-        "DevOps Services",
-        "QA Testing",
-        "Workflow Automation",
-        "IoT Solutions",
-        "Real-Time Solutions",
-      ],
-    },
-    "Data Engineering & Analytics": {
-      path: "/data-engineering",
-      items: [
-        "Data Engineering",
-        "Data Warehousing",
-        "Data Modeling Services",
-        "Data Integration and APIs",
-      ],
-    },
-    "Artificial Intelligence": {
-      path: "/artificial-intelligence",
-      items: [
-        "AI-Powered Software",
-        "Generative AI Apps",
-        "Machine Learning",
-        "Business Intelligence",
-      ],
-    },
-    Security: {
-      path: "/security",
-      items: [
-        "Secure Code Remediation",
-        "Compliance Monitoring",
-        "Disaster Recovery",
-        "Cloud Security",
-      ],
-    },
-    "Cloud & Infrastructure Services": {
-      path: "/cloude-infrastructure",
-      items: [
-        "Cloud Infrastructure Design",
-        "Cloud Strategy  Consulting",
-        "Cloud Migration",
-        "Azure Cloud Service",
-      ],
-    },
-    "Digital Transformation Engineering": {
-      path: "/digital-transformation",
-      items: ["Custom CRM Development", "Hubspot", "Salesforce"],
-    },
-  };
+  const { services, isLoading } = useServices();
+
+  const serviceMap = services.reduce((acc, service) => {
+    acc[service.title] = {
+      path: `/${service.slug}`,
+      items: service.sections.map((sec) => sec.heading),
+    };
+    return acc;
+  }, {});
 
   const technologies = [
     {
@@ -262,6 +208,7 @@ const ServicesMain = ({ setIsServicesHovered }) => {
   ];
 
   const [activeCategory, setActiveCategory] = useState(null);
+  if (isLoading) return null; // or skeleton
 
   return (
     <>
@@ -275,10 +222,8 @@ const ServicesMain = ({ setIsServicesHovered }) => {
       >
         <div className="container mx-auto py-4">
           {/* First Row - Main/Bigger Categories */}
-          <div
-            className="grid grid-cols-1 sm:grid-cols-4 gap-4 px-6 mb-5"
-          >
-            {Object.entries(services)
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 px-6 mb-5">
+            {Object.entries(serviceMap)
               .slice(0, 4) // Take first 4 categories for first row
               .map(([category, { path, items }], index) => (
                 <div
@@ -296,9 +241,7 @@ const ServicesMain = ({ setIsServicesHovered }) => {
                   </div>
                   <div className="py-1">
                     {items.map((item, index) => (
-                      <div
-                        key={index}
-                      >
+                      <div key={index}>
                         <Link
                           href={`${path}#${item
                             .toLowerCase()
@@ -315,10 +258,8 @@ const ServicesMain = ({ setIsServicesHovered }) => {
           </div>
 
           {/* Second Row - Smaller Categories */}
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6"
-          >
-            {Object.entries(services)
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6">
+            {Object.entries(serviceMap)
               .slice(4) // Take remaining categories for second row
               .map(([category, { path, items }], index) => (
                 <div
@@ -336,9 +277,7 @@ const ServicesMain = ({ setIsServicesHovered }) => {
                   </div>
                   <div className="py-1">
                     {items.map((item, index) => (
-                      <div
-                        key={index}
-                      >
+                      <div key={index}>
                         <Link
                           href={`${path}#${item
                             .toLowerCase()
@@ -365,14 +304,9 @@ const ServicesMain = ({ setIsServicesHovered }) => {
             <hr className="w-full h-[1px] bg-gray-300" />
           </div>
 
-          <div
-            className="flex gap-8 justify-center pb-3"
-          >
+          <div className="flex gap-8 justify-center pb-3">
             {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 flex items-center"
-              >
+              <div key={index} className="flex-shrink-0 flex items-center">
                 {tech.icon}
               </div>
             ))}

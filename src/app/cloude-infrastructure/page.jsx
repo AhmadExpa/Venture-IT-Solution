@@ -14,22 +14,28 @@ import TechStackCloude from "../components/sections/TechStackCloude";
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import CloudInfraServices from "../components/sections/CloudInfraServices";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+  const { service, isLoading } = useServiceBySlug("cloude-infrastructure");
   return (
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="Cloud & Infrastructure Services"
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Cloud & Infrastructure Services"
+        }
       />
-      <ClaudeContent />
+      <ClaudeContent service={service}/>
       {/* <DevelopmentBuildBlock /> */}
-       <CloudInfraServices/>
+      <CloudInfraServices />
       <InnovationDeliver />
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackCloude />
-     <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <ReliableDevelopment /> */}
       {/* <LatestStories /> */}
       <OneStop

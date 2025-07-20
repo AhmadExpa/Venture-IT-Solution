@@ -15,22 +15,28 @@ import DataEngineringContent from "../components/sections/DataEngineringContent"
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import EfficientDataEngineering from "../components/sections/EfficientDataEngineering";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+  const { service, isLoading } = useServiceBySlug("data-engineering");
   return (
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="Data Engineering & Analytics"
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Data Engineering & Analytics"
+        }
       />
-      <DataEngineringContent />
+      <DataEngineringContent service={service}/>
       {/* <AidataBuildingBlock /> */}
       <EfficientDataEngineering />
       <InnovationDeliver />
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackAi />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <WhyChooseDevelopment /> */}
       {/* <LatestStories /> */}
       <OneStop

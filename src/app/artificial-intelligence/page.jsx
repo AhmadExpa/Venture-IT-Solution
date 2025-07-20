@@ -15,22 +15,29 @@ import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import ArtificialIntelligenceContent from "../components/sections/ArtificialIntelligenceContent";
 import TransformAiandMl from "../components/sections/TransformAiandMl";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+  const { service, isLoading } = useServiceBySlug("artificial-intelligence");
   return (
     <div>
+      <CustomHeroSection bgImage={bgImage} heading="" />
       <CustomHeroSection
         bgImage={bgImage}
-        heading="Artificial Intelligence"
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Artificial Intelligence"
+        }
       />
-    <ArtificialIntelligenceContent/>
+      <ArtificialIntelligenceContent service={service} />
       {/* <DevelopmentBuildBlock /> */}
       <TransformAiandMl />
       <InnovationDeliver />
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackCloude />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <WhyChooseDevelopment /> */}
       {/* <ReliableDevelopment /> */}
       {/* <LatestStories /> */}
