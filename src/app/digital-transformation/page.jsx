@@ -15,16 +15,22 @@ import DigitalContent from "../components/sections/DigitalContent";
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import DigitalTransformandSecure from "../components/sections/DigitalTransformandSecure";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+   const { service, isLoading } = useServiceBySlug("digital-transformation");
   return (
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="Digital Transformation Engineering"
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Digital Transformation Engineering"
+        }
       />
       {/* <AiDataContent /> */}
-      <DigitalContent />
+      <DigitalContent service={service} />
       {/* <AidataBuildingBlock /> */}
       {/* <SpeedAndSecurity /> */}
       <DigitalTransformandSecure />
@@ -32,7 +38,7 @@ const page = () => {
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackAi />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <LatestStories /> */}
       <OneStop
         para="Bringing futuristic tech innovation closer to you, wherever you are, with our"

@@ -3,34 +3,35 @@ import React from "react";
 import bgImage from "../assets/images/softwaredev.jpg";
 import CustomHeroSection from "../components/common/CustomHeroSection";
 import DevelopmentContent from "../components/sections/developmentSection/DevelopmentContent";
-import DevelopmentBuildBlock from "../components/sections/developmentSection/DevelopmentBuildBlock";
-import TechStackMethod from "../components/sections/methods/TechStackMethod";
-import WhyChooseDevelopment from "../components/sections/developmentSection/WhyChooseDevelopment";
-import ReliableDevelopment from "../components/sections/developmentSection/ReliableDevelopment";
+
 import OneStop from "../components/common/OneStop";
 import InnovationDeliver from "../components/sections/InnovationDeliver";
 import InnovationInIndustry from "../components/sections/InnovationInIndustry";
-import LatestStories from "../components/sections/LatestStories";
 import TechStackDev from "../components/sections/developmentSection/TechStackDev";
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+  const { service, isLoading } = useServiceBySlug("development");
   return (
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="Software Development & Product Engineering"
-        
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Software Development & Product Engineering"
+        }
       />
-      <DevelopmentContent />
+      <DevelopmentContent service={service} />
       {/* <DevelopmentBuildBlock /> */}
       <SpeedAndSecurity />
       <InnovationDeliver />
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackDev />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <WhyChooseDevelopment /> */}
       {/* <ReliableDevelopment /> */}
       {/* <LatestStories /> */}

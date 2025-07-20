@@ -9,6 +9,7 @@ import GradientButton from "../common/GradientButton";
 
 import ServicesMain from "../sections/ServicesDropdown/ServicesMain";
 import IndustryMain from "../sections/IndustriesMain";
+import useServices from "@/hooks/useServices";
 
 function Navbar() {
   const router = useRouter();
@@ -19,6 +20,7 @@ function Navbar() {
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const [expandedServiceCategory, setExpandedServiceCategory] = useState(null);
 
+  const { services, isLoading, isError } = useServices();
   const pathname = usePathname();
 
   const toggleMenu = () => {
@@ -44,7 +46,9 @@ function Navbar() {
   };
 
   const toggleServiceCategory = (index) => {
-    setExpandedServiceCategory(expandedServiceCategory === index ? null : index);
+    setExpandedServiceCategory(
+      expandedServiceCategory === index ? null : index
+    );
   };
 
   const closeMenuAndNavigate = (href) => {
@@ -58,130 +62,17 @@ function Navbar() {
     pathname === "/" || pathname === "/portfolio" ? "text-white" : "text-black";
 
   // Service links data structure
-  const serviceCategories = [
-    {
-      title: "Software Development & Product ",
-      link: "/development",
-      links: [
-        { name: "Mobile Development", href: "/development#mobile-development" },
-        {
-          name: "Software Development",
-          href: "/development#software-development",
-        },
-        { name: "Web Applications", href: "/development#web-applications" },
-        { name: "MVP Development", href: "/development#mvp-development" },
-        { name: "SaaS Development", href: "/development#saas-development" },
-        {
-          name: "Full Stack Development",
-          href: "/development#full-stack-development",
-        },
-        {
-          name: "Product Development",
-          href: "/development#product-development",
-        },
-      ],
-    },
-    {
-      title: "DevOps, Automation and Solution",
-      link: "/devops-automation",
-      links: [
-        { name: "DevOps Services", href: "/devops-automation#devops-services" },
-        { name: "QA Testing", href: "/devops-automation#qa-testing" },
-        {
-          name: "Workflow Automation",
-          href: "/devops-automation#workflow-automation",
-        },
-        { name: "IoT Solutions", href: "/devops-automation#iot-solutions" },
-        {
-          name: "Real-Time Solutions",
-          href: "/devops-automation#real-time-solutions",
-        },
-      ],
-    },
-    {
-      title: "Data Engineering & Analytics",
-      link: "/data-engineering",
-      links: [
-        { name: "Data Engineering", href: "/data-engineering" },
-        {
-          name: "Data Warehousing",
-          href: "/data-engineering#data-warehousing",
-        },
-        {
-          name: "Data Modeling Services",
-          href: "/data-engineering#data-modeling",
-        },
-        {
-          name: "Data Integration and APIs",
-          href: "/data-engineering#data-integration-and-apis",
-        },
-      ],
-    },
-    {
-      title: "Artificial Intelligence",
-      link: "/artificial-intelligence",
-      links: [
-        { name: "AI-Powered Software", href: "/artificial-intelligence" },
-        {
-          name: "Generative AI Apps",
-          href: "/artificial-intelligence#generative-ai-apps",
-        },
-        {
-          name: "Machine Learning",
-          href: "/artificial-intelligence#machine-learning",
-        },
-        {
-          name: "Business Intelligence",
-          href: "/artificial-intelligence#business-intelligence",
-          
-        },
-      ],
-    },
-    {
-      title: "Cloud & Infrastructure Services",
-      link: "/cloude-infrastructure",
-      links: [
-        {
-          name: "Cloud Infrastructure Design",
-          href: "/cloude-infrastructure#cloud-infrastructure-design",
-        },
-        {
-          name: "Cloud Strategy  Consulting",
-          href: "/cloude-infrastructure#cloud-strategy-consulting",
-        },
-        {
-          name: "Cloud Migration",
-          href: "/cloude-infrastructure#cloud-migration",
-        },
-        {
-          name: "Azure Cloud Service",
-          href: "/cloude-infrastructure#azure-cloud-service",
-        },
-      ],
-    },
-    {
-      title: "Digital Transformation Engineering",
-      link: "/digital-transformation",
-      links: [
-        { name: "Custom CRM Development", href: "/digital-transformation" },
-        { name: "Hubspot", href: "/digital-transformation#hubspot" },
-        { name: "Salesforce", href: "/digital-transformation#salesforce" },
-      ],
-    },
-    {
-      title: "Security",
-      link: "/security",
-      links: [
-        { name: "Secure Code Remediation", href: "/security" },
-        {
-          name: "Compliance Monitoring",
-          href: "/security#compliance-monitoring",
-        },
-        { name: "Disaster Recovery", href: "/security#disaster-recovery" },
-        { name: "Cloud Security", href: "/security#cloud-security" },
-      ],
-    },
-  ];
+  const serviceCategories =
+    services.length > 0
+      ? services.map((service) => ({
+          title: service.title || service.slug,
+          link: `/${service.slug}`,
+          links: service.sections.map((section) => ({
+            name: section.heading,
+            href: `/${service.slug}${section.path}`,
+          })),
+        }))
+      : [];
 
   // Industry links data structure
   const industryCategories = [
@@ -216,6 +107,8 @@ function Navbar() {
       links: [{ name: "Real Estate", href: "/industries#realestate" }],
     },
   ];
+  if (isLoading) return null; // or skeleton
+  if (isError) console.error("Failed to load services");
 
   return (
     <div
@@ -429,9 +322,7 @@ function Navbar() {
             <div className="pl-2 pb-4 animate-slideInRight">
               {industryCategories.map((category, idx) => (
                 <div key={idx} className="mb-4">
-                  <h3 className=" text-lg mb-2 text-white">
-                    {category.title}
-                  </h3>
+                  <h3 className=" text-lg mb-2 text-white">{category.title}</h3>
                   <ul className="pl-3 space-y-2">
                     {category.links.map((link, linkIdx) => (
                       <li key={linkIdx}>

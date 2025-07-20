@@ -15,12 +15,21 @@ import AutomationContent from "../components/sections/AutomationContent";
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import SecuritySpeedScale from "../components/sections/SecuritySpeedScale";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+   const { service, isLoading } = useServiceBySlug("security");
   return (
     <div>
-      <CustomHeroSection bgImage={bgImage} heading="Security" />
-      <AutomationContent />
+      <CustomHeroSection
+        bgImage={bgImage}
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "Security"
+        }
+      />
+      <AutomationContent service={service}/>
       {/* <DevelopmentBuildBlock /> */}
       {/* <SpeedAndSecurity /> */}
       <SecuritySpeedScale/>

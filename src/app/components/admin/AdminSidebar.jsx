@@ -7,6 +7,7 @@ import {
   FiMail,
   FiUsers,
   FiFilePlus,
+  FiBriefcase,
 } from "react-icons/fi";
 
 export default function AdminSidebar() {
@@ -32,6 +33,11 @@ export default function AdminSidebar() {
       href: "/admin/submissions",
       label: "Submissions",
       icon: <FiMail className="text-lg" />,
+    },
+    {
+      href: "/admin/services",
+      label: "Services",
+      icon: <FiBriefcase className="text-lg" />,
     },
     {
       href: "/admin/users",

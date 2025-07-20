@@ -14,23 +14,30 @@ import TechStackDevops from "../components/sections/TechStackDevops";
 import SpeedAndSecurity from "../components/sections/SpeedAndSecurity";
 import DevopsAndOptimized from "../components/sections/DevopsAndOptimized";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import useServiceBySlug from "@/hooks/useServiceBySlug";
 
 const page = () => {
+  const { service, isLoading } = useServiceBySlug("devops-automation");
   return (
     <div>
       <CustomHeroSection
         bgImage={bgImage}
-        heading="DevOps, Automation, and Solution"
+        heading={
+          isLoading || !service
+            ? "Loading..."
+            : service.title || "DevOps, Automation, and Solution"
+        }
+
       />
-      <DeveopsContent />
+      <DeveopsContent service={service} />
       {/* <DevelopmentBuildBlock /> */}
       {/* <SpeedAndSecurity /> */}
-      <DevopsAndOptimized/>
+      <DevopsAndOptimized />
       <InnovationDeliver />
       <InnovationInIndustry />
       {/* <TechStackMethod /> */}
       <TechStackDevops />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       {/* <WhyChooseDevelopment /> */}
       {/* <ReliableDevelopment /> */}
       {/* <LatestStories /> */}
