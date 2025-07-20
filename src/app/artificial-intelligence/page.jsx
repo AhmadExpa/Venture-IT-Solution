@@ -21,7 +21,6 @@ const page = () => {
   const { service, isLoading } = useServiceBySlug("artificial-intelligence");
   return (
     <div>
-      <CustomHeroSection bgImage={bgImage} heading="" />
       <CustomHeroSection
         bgImage={bgImage}
         heading={
