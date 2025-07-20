@@ -27,7 +27,7 @@ function page() {
       {/* <Counter /> */}
       {/* <Today /> */}
       <KeyStatsSection />
-      <InnovationDeliver />
+     <InnovationDeliver />
       {/* <Trustworthy /> */}
       <DigitalExcellence />
       <VisionExecution />
