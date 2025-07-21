@@ -1,52 +1,52 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { FiUserPlus } from 'react-icons/fi';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { FiUserPlus } from "react-icons/fi";
 
 export default function NewUserPage() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'admin'
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "admin",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     setLoading(true);
-    
+
     try {
-      const res = await fetch('/api/admin/users', {
-        method: 'POST',
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          role: formData.role
-        })
+          role: formData.role,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to create user');
+      if (!res.ok) throw new Error(data.error || "Failed to create user");
 
-      router.push('/admin/users');
+      router.push("/admin/users");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -66,9 +66,15 @@ export default function NewUserPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-lg shadow p-6 space-y-6"
+      >
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Email Address
           </label>
           <input
@@ -83,7 +89,10 @@ export default function NewUserPage() {
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Password
           </label>
           <input
@@ -99,7 +108,10 @@ export default function NewUserPage() {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="confirmPassword"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Confirm Password
           </label>
           <input
@@ -114,7 +126,10 @@ export default function NewUserPage() {
         </div>
 
         <div>
-          <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="role"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Role
           </label>
           <select
@@ -125,14 +140,13 @@ export default function NewUserPage() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           >
             <option value="admin">Admin</option>
-            <option value="editor">Editor</option>
           </select>
         </div>
 
         <div className="flex justify-end space-x-3">
           <button
             type="button"
-            onClick={() => router.push('/admin/users')}
+            onClick={() => router.push("/admin/users")}
             className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
           >
             Cancel
@@ -141,10 +155,10 @@ export default function NewUserPage() {
             type="submit"
             disabled={loading}
             className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none ${
-              loading ? 'opacity-70 cursor-not-allowed' : ''
+              loading ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
-            {loading ? 'Creating...' : 'Create User'}
+            {loading ? "Creating..." : "Create User"}
           </button>
         </div>
       </form>
