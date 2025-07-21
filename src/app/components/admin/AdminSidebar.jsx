@@ -26,8 +26,8 @@ export default function AdminSidebar() {
       icon: <FiFileText className="text-lg" />,
     },
     {
-      href: "/admin/blogs/new",
-      label: "New Blog",
+      href: "/admin/case-study",
+      label: "Case Study",
       icon: <FiFilePlus className="text-lg" />,
     },
     {
@@ -45,6 +45,7 @@ export default function AdminSidebar() {
       label: "Services",
       icon: <FiBriefcase className="text-lg" />,
     },
+
     {
       href: "/admin/users",
       label: "Users",

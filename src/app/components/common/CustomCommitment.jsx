@@ -81,7 +81,7 @@ function CustomCommitment({ commitmentCards }) {
                     </div>
                     <div
                       className="lg:w-[50vw] w-full bg-cover bg-center rounded-xl relative lg:h-[75vh] md:h-[53vh] h-auto"
-                      style={{ backgroundImage: `url(${card.bgImage.src})` }}
+                      style={{ backgroundImage: `url(${card.bgImage})` }}
                     >
                       <div className="absolute top-2 right-2 border border-white py-[2px] px-2 rounded-full">
                         <span className="text-white text-xs font-semibold">

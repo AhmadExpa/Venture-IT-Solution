@@ -1,26 +1,26 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { marked } from "marked";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { IoMdArrowForward } from "react-icons/io";
-import dbConnect from "@/lib/dbConnect";
-import BlogPost from "@/models/BlogPost";
+import useBlogsBySlug from "@/hooks/useBlogsBySlug";
+import { useParams } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+export default function BlogPage() {
+  const { slug } = useParams();
+  console.log(slug);
+  const { service: blog, isLoading, isError } = useBlogsBySlug(slug);
 
-export default async function BlogPage({ params }) {
-  const slug = (await params).slug;
-
-  await dbConnect();
-  const blog = await BlogPost.findOne({ slug }).lean();
-
-  if (!blog)
-    return <div className="pt-28 text-center text-2xl">Blog not found</div>;
+  if (isLoading)
+    return <div className="pt-28 text-center">Loading blog...</div>;
+  if (isError || !blog)
+    return <div className="pt-28 text-center text-red-500">Blog not found</div>;
 
   const landingImage = blog.images?.[0];
   const otherImages = blog.images?.slice(1) || [];
-  const content = marked.parse(blog.content);
+  const content = marked.parse(blog.content || "");
 
   return (
     <div className="md:px-12 px-5 pt-28">
@@ -31,13 +31,13 @@ export default async function BlogPage({ params }) {
         </div>
       </Link>
 
+      {/* Header */}
       <div className="md:flex justify-between lg:pt-20 md:pt-10 pt-5 gap-8">
         <div className="md:w-[40vw]">
           <h1 className="lg:text-[55px] text-3xl font-semibold md:tracking-wide lg:leading-[65px] md:leading-[40px]">
             {blog.title}
           </h1>
         </div>
-
         <div className="flex flex-col md:w-[45vw] justify-between">
           <p className="font-semibold text-gray-600 text-lg lg:text-end">
             {new Date(blog.createdAt).toLocaleDateString()}
@@ -48,6 +48,7 @@ export default async function BlogPage({ params }) {
         </div>
       </div>
 
+      {/* Hero Image */}
       {landingImage && (
         <div className="lg:pt-20 pt-10">
           <Image
@@ -60,6 +61,7 @@ export default async function BlogPage({ params }) {
         </div>
       )}
 
+      {/* Body + Sidebar */}
       <div className="flex md:flex-row flex-col justify-between lg:pt-28 pt-10 gap-10">
         <div className="border border-gray-300 rounded-2xl p-10 lg:w-[28vw] md:h-fit md:sticky md:top-20">
           <div className="flex flex-col gap-4">
@@ -68,7 +70,6 @@ export default async function BlogPage({ params }) {
               {blog.excerpt}
             </h2>
           </div>
-
           <div className="mt-6 flex gap-4 items-center">
             <span className="font-semibold text-gray-600">Learn More</span>
             <IoMdArrowForward size={24} className="text-gray-600" />
