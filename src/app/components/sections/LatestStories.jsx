@@ -1,26 +1,19 @@
 "use client";
+
 import exploreImage from "../../assets/images/ExploreArrow.png";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ExploreDeeper from "../common/ExploreDeeper";
+import useBlogs from "@/hooks/useBlogs";
 
 function LatestStories() {
-  const [blogs, setBlogs] = useState([]);
+  const { blogs, isLoading } = useBlogs();
 
-  useEffect(() => {
-    fetch("/api/admin/blogs")
-      .then((res) => res.json())
-      .then((data) => setBlogs(data));
-  }, []);
-
-  const articles = blogs.map(
-    (blog) => ({
-      image: blog.images[0]?.path || "/default.jpg",
-      title: blog.title,
-      slug: blog.slug,
-      description: blog.excerpt,
-    }),
-    []
-  );
+  const articles = blogs.map((blog) => ({
+    image: blog.images?.[0]?.path || "/default.jpg",
+    title: blog.title,
+    slug: blog.slug,
+    description: blog.excerpt,
+  }));
 
   return (
     <ExploreDeeper
@@ -28,7 +21,7 @@ function LatestStories() {
       description="Explore our blogs and recent stories for incredible insights, tips, trends, and inspiration to fuel your growth in the market."
       exploreText="Explore deeper knowledge"
       exploreImage={exploreImage}
-      articles={articles}
+      articles={isLoading ? [] : articles}
     />
   );
 }
