@@ -10,22 +10,15 @@ import Link from "next/link";
 const Insights = () => {
   return (
     <>
-      <div className="lg:h-[200px]  lg:pt-[100px] pt-[80px] flex flex-col justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className=" md:space-y-3">
-            <h1 className="text-4xl md:text-7xl font-bold text-black tracking-tight">
-              New At Insights
-            </h1>
-            <div className="lg:flex lg:justify-end">
-              <p className="text-lg md:text-xl text-gray-600 md:w-[600px] w-full">
-                Dive into a compilation spotlighting our capabilities, team,
-                research, & dynamic corporate evolution.
-              </p>
-            </div>
-          </div>
+      <div className="lg:h-[200px] flex items-center justify-center px-4 mt-10 sm:px-6 mt-20 lg:px-8">
+        <div className="max-w-7xl mx-auto w-full text-center">
+          <h1 className="text-4xl md:text-7xl font-bold text-black tracking-tight">
+            New At Insights
+          </h1>
         </div>
       </div>
-      <div className=" lg:py-0 md:py-5 h-full rounded-xl">
+
+      <div className="lg:my-5 md:my-5 py-5 h-full">
         <LatestStories />
       </div>
       {/* <ExploreAll /> */}

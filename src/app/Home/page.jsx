@@ -27,7 +27,7 @@ function page() {
       {/* <Counter /> */}
       {/* <Today /> */}
       <KeyStatsSection />
-     <InnovationDeliver />
+      <InnovationDeliver />
       {/* <Trustworthy /> */}
       <DigitalExcellence />
       <VisionExecution />
@@ -36,7 +36,9 @@ function page() {
       <ContactForm />
       {/* <SuccessStories /> */}
       {/* <ClientSay /> */}
-      <LatestStories />
+      <div className="lg:my-5 md:my-5 py-5 h-full">
+        <LatestStories />
+      </div>
       <OneStop
         para="Bringing futuristic tech innovation closer to you, wherever you are, with our"
         title="One-Stop Solutions"
