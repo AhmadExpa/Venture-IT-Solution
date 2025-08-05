@@ -32,7 +32,7 @@ function page() {
       {/* <DiscoverFuture /> */}
       {/* <DigitalExcellence /> */}
       <IndustryDigitalExcellence/>
-      <EDCommitment />
+      {/* <EDCommitment /> */}
       {/* <Commitment /> */}
       <EDVentureIT />
       {/* <EDReliablePartners /> */}
