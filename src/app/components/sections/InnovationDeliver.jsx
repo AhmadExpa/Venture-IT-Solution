@@ -40,7 +40,7 @@ function InnovationDeliver() {
                 icon={forwardArrowIcon}
               />
             </Link>
-            <Link href="https://calendly.com/wasayal-talent-network/30min?month=2025-01">
+            <Link href="/hire-us">
               <button className="bg-white text-black text-base font-semibold w-auto  px-8 py-3 border-2 border-[#DCC268] rounded-full cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#DCC268]">
                 Let's Talk
               </button>
