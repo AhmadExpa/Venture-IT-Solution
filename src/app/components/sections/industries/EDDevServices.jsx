@@ -40,7 +40,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Education</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -75,7 +75,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Healthcare</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -112,7 +112,7 @@ function EDDevServices() {
                 Information Technology
               </h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -147,7 +147,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Sports</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -184,7 +184,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Insurance</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -220,7 +220,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Oil & Gas</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -256,7 +256,7 @@ function EDDevServices() {
                 Transportation
               </h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -295,7 +295,7 @@ function EDDevServices() {
                 Hospitality
               </h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -336,7 +336,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">Ecommerce</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -369,7 +369,7 @@ function EDDevServices() {
                 Real Estate
               </h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div
@@ -399,7 +399,7 @@ function EDDevServices() {
             <div className="flex items-center justify-between">
               <h1 className="text-white text-2xl font-bold mb-2">HR-Finance</h1>
               <span className="text-[#CB9F3C] mb-2 text-2xl opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
-                <MdOutlineArrowOutward />
+                <MdOutlineArrowOutward className="hidden" />
               </span>
             </div>
             <div

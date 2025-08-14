@@ -107,7 +107,6 @@ function Navbar() {
       links: [{ name: "Real Estate", href: "/industries#realestate" }],
     },
   ];
-  if (isLoading) return null; // or skeleton
   if (isError) console.error("Failed to load services");
 
   return (
@@ -135,15 +134,23 @@ function Navbar() {
             <div>
               <Link href="/services">Services</Link>
             </div>
-            {/* Toggle Icon for Services */}
-            <button onClick={toggleServices} className="focus:outline-none">
-              {isServicesHovered ? (
-                <FiChevronUp className={textColor} />
-              ) : (
+
+            {/* Inline Loader while loading */}
+            {isLoading ? (
+              <div className="ml-2 w-4 h-4 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            ) : (
+              <button onClick={toggleServices} className="focus:outline-none">
+                {/* Double Arror Animation */}
+                {/* {isServicesHovered ? (
+                  <FiChevronUp className={textColor} />
+                ) : (
+                  <FiChevronDown className={textColor} />
+                )} */}
                 <FiChevronDown className={textColor} />
-              )}
-            </button>
+              </button>
+            )}
           </li>
+
           {isServicesHovered && (
             <ServicesMain setIsServicesHovered={setIsServicesHovered} />
           )}
@@ -161,11 +168,13 @@ function Navbar() {
             </div>
             {/* Toggle Icon for Industries */}
             <button className="focus:outline-none">
-              {isIndustriesHovered ? (
+              {/* Double Arror Animation */}
+              {/* {isIndustriesHovered ? (
                 <FiChevronUp className={textColor} />
               ) : (
                 <FiChevronDown className={textColor} />
-              )}
+              )} */}
+              <FiChevronDown className={textColor} />
             </button>
           </li>
           {isIndustriesHovered && (
@@ -188,10 +197,7 @@ function Navbar() {
 
       {/* Desktop CTA - Hidden on md and smaller */}
       <div className="hidden lg:flex items-center md:ms-3 ms-0 space-x-3">
-        <Link
-          target="_blank"
-          href="https://calendly.com/wasayal-talent-network/30min?month=2025-01"
-        >
+        <Link target="_blank" href="/hire-us">
           <GradientButton
             text="LET'S TALK"
             textColor="#171717"
