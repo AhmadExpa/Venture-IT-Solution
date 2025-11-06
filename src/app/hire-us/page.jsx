@@ -758,7 +758,7 @@ const Page = () => {
                     {captchaToken ? (
                       <button type="submit">
                         <GradientButton
-                          text={isSubmitting ? "Sending..." : "Send"}
+                          text="Submit"
                           textColor="#171717"
                           fontSize="16px"
                           padding="6px 20px"
