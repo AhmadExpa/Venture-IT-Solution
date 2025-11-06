@@ -11,6 +11,7 @@ const Page = () => {
   const [dragActive, setDragActive] = useState(false);
   const [sendNDA, setSendNDA] = useState(false);
   const [callASAP, setCallASAP] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     businessEmail: "",
@@ -170,6 +171,7 @@ const Page = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     if (!validateForm()) {
@@ -249,6 +251,7 @@ const Page = () => {
       setCallASAP(false);
       setErrors({});
       setCaptchaToken(null);
+      setLoading(false);
     } catch (err) {
       console.error(err);
       setToast({
@@ -256,6 +259,7 @@ const Page = () => {
         message: "Submission failed: " + err.message,
         type: "error",
       });
+      setLoading(false);
     }
   };
 
@@ -758,7 +762,7 @@ const Page = () => {
                     {captchaToken ? (
                       <button type="submit">
                         <GradientButton
-                          text="Submit"
+                          text={loading ? "Submitting..." : "Submit"}
                           textColor="#171717"
                           fontSize="16px"
                           padding="6px 20px"
