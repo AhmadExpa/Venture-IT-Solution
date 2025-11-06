@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { LuMessagesSquare, LuX, LuUpload } from "react-icons/lu";
 import { TbLockCheck } from "react-icons/tb";
 import GradientButton from "../components/common/GradientButton";
@@ -23,20 +24,20 @@ const Page = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
+  const [files, setFiles] = useState([]);
+  const fileInputRef = useRef(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   useEffect(() => {
     if (toast.show) {
-      const timer = setTimeout(() => {
-        setToast({ ...toast, show: false });
-      }, 3000);
+      const timer = setTimeout(
+        () => setToast((s) => ({ ...s, show: false })),
+        3000
+      );
       return () => clearTimeout(timer);
     }
   }, [toast]);
-
-  const [files, setFiles] = useState([]);
-  const fileInputRef = useRef(null);
 
   const solutions = [
     {
@@ -65,27 +66,15 @@ const Page = () => {
     const { id, value } = e.target;
 
     if (id === "phoneNumber") {
-      // Allow only digits in phoneNumber
-      const re = /^[0-9\b]+$/; // Regular expression to allow only digits
+      const re = /^[0-9\b]+$/;
       if (value === "" || re.test(value)) {
-        setFormData({
-          ...formData,
-          [id]: value,
-        });
+        setFormData((s) => ({ ...s, [id]: value }));
       }
     } else {
-      setFormData({
-        ...formData,
-        [id]: value,
-      });
+      setFormData((s) => ({ ...s, [id]: value }));
     }
 
-    if (errors[id]) {
-      setErrors({
-        ...errors,
-        [id]: "",
-      });
-    }
+    if (errors[id]) setErrors((s) => ({ ...s, [id]: "" }));
   };
 
   const handleFileChange = (e) => {
@@ -110,9 +99,7 @@ const Page = () => {
     setFiles((prev) => {
       const updatedFiles = prev.filter((file) => file.id !== id);
       const fileToRemove = prev.find((file) => file.id === id);
-      if (fileToRemove) {
-        URL.revokeObjectURL(fileToRemove.url);
-      }
+      if (fileToRemove) URL.revokeObjectURL(fileToRemove.url);
       return updatedFiles;
     });
   };
@@ -152,7 +139,6 @@ const Page = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Email validation
     if (!formData.businessEmail) {
       newErrors.businessEmail = "Business email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
@@ -165,7 +151,6 @@ const Page = () => {
     if (!formData.firstName) newErrors.firstName = "First name is required";
     if (!formData.lastName) newErrors.lastName = "Last name is required";
 
-    // Phone number validation (only digits)
     if (!formData.phoneNumber) {
       newErrors.phoneNumber = "Phone number is required";
     } else if (!/^\d+$/.test(formData.phoneNumber)) {
@@ -202,10 +187,18 @@ const Page = () => {
       return;
     }
 
+    if (!captchaToken) {
+      setToast({
+        show: true,
+        message: "Please check the reCAPTCHA box.",
+        type: "error",
+      });
+      return;
+    }
+
     try {
       const formDataObj = new FormData();
 
-      // Append all fields
       Object.entries(formData).forEach(([key, value]) => {
         formDataObj.append(key, value);
       });
@@ -218,17 +211,18 @@ const Page = () => {
       formDataObj.append("sendNDA", sendNDA);
       formDataObj.append("callASAP", callASAP);
 
-      // Append files
       files.forEach(({ file }) => {
         formDataObj.append("files", file);
       });
+
+      formDataObj.append("token", captchaToken);
 
       const response = await fetch("/api/submit-form", {
         method: "POST",
         body: formDataObj,
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) throw new Error(result.error || "Submission failed");
 
@@ -238,7 +232,6 @@ const Page = () => {
         type: "success",
       });
 
-      // Reset form
       setFormData({
         businessEmail: "",
         companyName: "",
@@ -255,6 +248,7 @@ const Page = () => {
       setSendNDA(false);
       setCallASAP(false);
       setErrors({});
+      setCaptchaToken(null);
     } catch (err) {
       console.error(err);
       setToast({
@@ -275,7 +269,7 @@ const Page = () => {
         >
           <p className="">{toast.message}</p>
           <button
-            onClick={() => setToast({ ...toast, show: false })}
+            onClick={() => setToast((s) => ({ ...s, show: false }))}
             className="ml-4 text-white hover:text-gray-200"
           >
             <LuX size={18} />
@@ -441,15 +435,15 @@ const Page = () => {
                     Phone number <span className="text-red-500">*</span>
                   </label>
                   <input
-                    type="tel" // Use type="tel" for semantic correctness
+                    type="tel"
                     id="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     className={`mt-1 block w-full rounded-md border ${
                       errors.phoneNumber ? "border-red-500" : "border-gray-300"
                     } px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500`}
-                    pattern="[0-9]*" // HTML5 pattern for numeric input
-                    inputMode="numeric" // Hint for mobile keyboards
+                    pattern="[0-9]*"
+                    inputMode="numeric"
                   />
                   {errors.phoneNumber && (
                     <p className="mt-1 text-sm text-red-500">
@@ -554,7 +548,7 @@ const Page = () => {
                       >
                         {solutionGroup.items.map((solution) => (
                           <button
-                            type="button" // Add type="button" to prevent form submission
+                            type="button"
                             key={solution}
                             onClick={() => handleSolutionClick(solution)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
@@ -584,7 +578,6 @@ const Page = () => {
                     <span className="text-xl font-semibold text-emerald-500">
                       $ {budget}K
                     </span>
-                    <span className="text-gray-600"></span>
                   </div>
 
                   <div className="relative">
@@ -710,6 +703,7 @@ const Page = () => {
                   </div>
                 </div>
               </div>
+
               <div className="max-w-4xl mx-auto md:p-6 p-2 bg-gray-50">
                 <div className="space-y-6">
                   <div className="space-y-4">
@@ -747,15 +741,35 @@ const Page = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex md:justify-end justify-center">
-                    <button type="submit">
-                      <GradientButton
-                        text="Send"
-                        textColor="#171717"
-                        fontSize="16px"
-                        padding="6px 20px"
+
+                  <div className="flex md:justify-end justify-center items-center gap-4">
+                    {/* reCAPTCHA v2 Checkbox */}
+                    <div className="mt-6">
+                      <ReCAPTCHA
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                        onChange={(t) => setCaptchaToken(t)}
+                        onExpired={() => setCaptchaToken(null)}
+                        onError={() => setCaptchaToken(null)}
+                        theme="light"
                       />
-                    </button>
+                    </div>
+
+                    {/* Show the real submit button ONLY after captcha is solved */}
+                    {captchaToken ? (
+                      <button type="submit">
+                        <GradientButton
+                          text={isSubmitting ? "Sending..." : "Send"}
+                          textColor="#171717"
+                          fontSize="16px"
+                          padding="6px 20px"
+                        />
+                      </button>
+                    ) : (
+                      // optional: a subtle placeholder so layout doesn't jump
+                      <div className="h-10 px-6 rounded-md bg-gray-200 opacity-60 select-none flex items-center">
+                        Complete reCAPTCHA to continue
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

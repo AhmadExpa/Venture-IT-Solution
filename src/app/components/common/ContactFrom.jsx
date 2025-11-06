@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import img2 from "../../assets/images/contactus.jpg";
 import Image from "next/image";
 import GradientButton from "./GradientButton";
@@ -15,16 +16,14 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
     if (e.target.id === "email") setEmailError("");
   };
 
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,33 +33,31 @@ const ContactForm = () => {
       return;
     }
 
-    setIsSubmitting(true);
+    if (!captchaToken) {
+      alert("Please check the reCAPTCHA box.");
+      return;
+    }
 
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/contact-submission", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, token: captchaToken }),
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          message: "",
-        });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        const errorData = await response.json();
-        alert(`Submission failed: ${errorData.message}`);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || "Submission failed");
       }
+
+      setSubmitted(true);
+      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+      setCaptchaToken(null);
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form");
+      alert(error.message || "An error occurred while submitting the form");
     } finally {
       setIsSubmitting(false);
     }
@@ -70,7 +67,7 @@ const ContactForm = () => {
     <div className="relative">
       {submitted && (
         <div className="absolute top-72 left-1/2 -translate-x-1/2 z-50 bg-gray-200 px-6 py-3 rounded shadow-lg transition-opacity duration-500">
-          ✅ Your message has been submitted successfully!
+          Thanks for getting in touch! One of our team members will reach out to you shortly to assist with your inquiry.
         </div>
       )}
 
@@ -147,7 +144,7 @@ const ContactForm = () => {
               </label>
               <input
                 id="email"
-                type="email" // Use type="email" for built-in browser validation hints
+                type="email"
                 placeholder="Company email"
                 value={formData.email}
                 onChange={handleChange}
@@ -186,16 +183,36 @@ const ContactForm = () => {
               or restrict data processing as outlined in our website.
             </div>
 
-            <div>
-              <GradientButton
-                text={isSubmitting ? "SENDING..." : "SEND"}
-                bgColor="#CEA645"
-                textColor="#171717"
-                fontSize="18px"
-                fontWeight="600"
-                padding="12px 22px"
-                disabled={isSubmitting}
-              />
+            <div className="flex flex-col md:flex-row md:justify-end justify-center items-center gap-4 mt-6">
+              {/* reCAPTCHA v2 Checkbox */}
+              <div>
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  onChange={(t) => setCaptchaToken(t)}
+                  onExpired={() => setCaptchaToken(null)}
+                  onError={() => setCaptchaToken(null)}
+                  theme="light"
+                />
+              </div>
+
+              {/* Show button only when captcha is solved */}
+              {captchaToken ? (
+                <button type="submit">
+                  <GradientButton
+                    text={isSubmitting ? "SENDING..." : "SEND"}
+                    bgColor="#CEA645"
+                    textColor="#171717"
+                    fontSize="18px"
+                    fontWeight="600"
+                    padding="12px 22px"
+                    disabled={isSubmitting}
+                  />
+                </button>
+              ) : (
+                <div className="h-[50px] flex items-center px-6 rounded-md bg-gray-200 text-gray-500 text-sm select-none">
+                  Complete reCAPTCHA to continue
+                </div>
+              )}
             </div>
           </form>
         </div>
