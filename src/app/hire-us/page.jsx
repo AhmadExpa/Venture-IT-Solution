@@ -746,7 +746,7 @@ const Page = () => {
                     </div>
                   </div>
 
-                  <div className="flex md:justify-end justify-center items-center gap-4">
+                  <div className="flex flex-col md:justify-end justify-center  items-center gap-4">
                     {/* reCAPTCHA v2 Checkbox */}
                     <div className="mt-6">
                       <ReCAPTCHA

@@ -379,10 +379,10 @@ function Navbar() {
           <li className="pt-3">
             <Link
               target="_blank"
-              href="https://calendly.com/wasayal-talent-network/30min?month=2025-01"
+              href="/hire-us"
               onClick={() =>
                 closeMenuAndNavigate(
-                  "https://calendly.com/wasayal-talent-network/30min?month=2025-01"
+                  "/hire-us"
                 )
               }
             >
